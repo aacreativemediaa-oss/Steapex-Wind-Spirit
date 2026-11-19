@@ -39,8 +39,8 @@ footage dikekalkan pada 30%.
 | 17.0–20.0 | Penimbang | lencana **240g RINGAN** | *"dan ringan" disembunyikan* |
 | 20.0–23.5 | Ujian asap tembus kain | CIRI #3 · KAIN BREATHABLE | *disembunyikan* |
 | 23.5–27.0 | Jogging di trek | penjejak jarak 0→10.0 KM+ "Walaupun lebih 10KM" | **TAK PANAS** (klausa 10KM disembunyikan) |
-| 27.0–30.3 | Beg kasut Steapex | BONUS PERCUMA · DAPAT BEG KASUT SEKALI! · Kasut kotor boleh simpan terus | *disembunyikan* |
-| 30.3–33.3 | Pasangan kasut (end card) | + butang BELI SEKARANG ↓ | *disembunyikan* |
+| 27.0–30.0 | **USP** — beg kasut Steapex | BONUS · DAPAT BEG KASUT SEKALI! · Kasut kotor boleh simpan terus | *disembunyikan* |
+| 30.0–33.85 | **CTA** — pasangan kasut (0.8x) | HARGA TENGAH **MURAH!** · PILIH WARNA (3 swatch) · dekat beg kuning 🛍 bawah sekarang + ikon beg kuning & anak panah ke bawah | *disembunyikan* |
 
 Tebal = kata kunci (hijau neon). Perkataan aktif bertukar kuning.
 

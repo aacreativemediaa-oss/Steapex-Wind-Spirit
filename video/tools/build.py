@@ -20,15 +20,15 @@ CLIPS = [
     ("c06", "c06_scale.mp4", 17.0, 3.0, "video_20251221_162434 0.8-3.8 shoe on scale 240g"),
     ("c07", "c07_smoke.mp4", 20.0, 3.5, "lv_0_20251221130556 77.8-81.3 smoke through mesh"),
     ("c08", "c08_run.mp4", 23.5, 3.5, "video_20260429_114602 5-8.5 jogging on track"),
-    ("c09", "c09_bag.mp4", 27.0, 3.3, "lv_0_20251220180407 83-86.3 Steapex shoe bag"),
-    ("c10", "c10_pair.mp4", 30.3, 3.0, "lv_0_20251221130556 93-96 hero pair"),
+    ("c09", "c09_bag.mp4", 27.0, 3.0, "lv_0_20251220180407 83-86 Steapex shoe bag (USP)"),
+    ("c10", "c10_pair.mp4", 30.0, 3.85, "lv_0_20251221130556 93.7-96.8 hero pair at 0.8x (CTA)"),
 ]
 TOTAL = round(CLIPS[-1][2] + CLIPS[-1][3], 3)
 CUTS = [c[2] for c in CLIPS[1:]]
 
 # ---- Captions: (start, end, words, keywords). No VO exists, so captions follow the script. -------
 # Hidden on purpose where a graphic already shows the same clause: hook, feature titles,
-# "dan ringan" (240g badge), "walaupun jogging lebih 10KM" (distance tracker), whole CTA.
+# "dan ringan" (240g badge), "walaupun jogging lebih 10KM" (distance tracker), whole USP and CTA.
 CAPTIONS = [
     (7.35, 8.55, ["SERAP", "IMPAK", "HENTAK"], {"IMPAK"}),
     (8.60, 9.40, ["DENGAN", "BAIK"], set()),
@@ -50,8 +50,8 @@ SFX = [
     (16.95, "zap", 0.8), (18.70, "pop", 1.0),
     (19.80, "whoosh", 0.9), (20.15, "ding", 0.7),
     (23.45, "zap", 0.8), (23.75, "pop", 0.6),
-    (25.50, "riser", 0.8), (27.00, "impact", 0.9), (27.35, "cha_ching", 0.9),
-    (30.25, "whoosh", 0.8), (30.80, "pop", 0.9),
+    (25.50, "riser", 0.8), (27.00, "impact", 0.9), (27.40, "ding", 0.7),
+    (29.95, "whoosh", 0.8), (30.35, "cha_ching", 0.9), (31.05, "pop", 0.8), (31.65, "pop", 0.9), (32.20, "zap", 0.6),
 ]
 
 # Natural sizes x 0.70 (the brief asks for 70% of the first pass); caption stays at 60px.
@@ -223,7 +223,7 @@ TEMPLATE = r"""<!doctype html>
                       transform-origin: 0 50%; transform: scaleX(0); }
       #track .note { color: var(--yellow); font-size: {{42}}; margin-top: 14px; }
 
-      /* CTA */
+      /* USP */
       #cta .box { position: absolute; top: 300px; left: 120px; right: 120px; text-align: center; }
       #cta .chip { display: inline-block; background: var(--yellow); color: #000; padding: 12px 28px; border-radius: 999px;
                    font-size: {{44}}; border: 4px solid #000; }
@@ -231,13 +231,26 @@ TEMPLATE = r"""<!doctype html>
       #cta .h .y { color: var(--neon); }
       #cta .subp { display: inline-block; margin-top: 22px; background: rgba(0,0,0,.7); color: #fff; font-family: var(--font-label);
                    font-weight: 600; font-size: {{48}}; padding: 14px 28px; border-radius: 18px; }
-      #ctabtn .btn { position: absolute; left: 450px; top: 1020px; white-space: nowrap;
-                     background: var(--neon); color: #000; border: 6px solid #000; border-radius: 999px; padding: 22px 54px;
-                     font-size: {{64}}; -webkit-text-stroke: 0; box-shadow: 0 8px 30px rgba(0,0,0,.5); }
-      #ctabtn .brand { position: absolute; left: 120px; width: 660px; top: 1180px; text-align: center; color: #fff; font-size: {{42}};
-                       text-shadow: 0 2px 8px #000; }
-
-      #ctabtn .brand span { background: rgba(0,0,0,.75); padding: 8px 20px; border-radius: 999px; }
+      /* CTA */
+      #buy .box { position: absolute; top: 330px; left: 120px; right: 120px; text-align: center; }
+      #buy .h1 { font-size: {{120}}; }
+      #buy .stamp { display: inline-block; margin-top: 14px; background: var(--yellow); color: #000; -webkit-text-stroke: 0;
+                    font-size: {{200}}; line-height: 1.05; padding: 8px 44px 4px; border: 8px solid #000; border-radius: 22px;
+                    box-shadow: 10px 10px 0 #000; transform-origin: 50% 50%; }
+      #buy .card { position: absolute; left: 120px; width: 660px; top: 800px; background: rgba(0,0,0,.8);
+                   border: 5px solid var(--neon); border-radius: 28px; padding: 24px 30px; text-align: center; }
+      #buy .pick { font-size: {{100}}; color: var(--neon); }
+      #buy .sw { display: flex; justify-content: center; gap: 18px; margin: 12px 0 14px; }
+      #buy .sw i { width: 58px; height: 58px; border-radius: 50%; border: 5px solid #fff; display: block; }
+      #buy .line { font-family: var(--font-label); font-weight: 800; color: #fff; font-size: {{48}}; line-height: 1.3;
+                   display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+      #buy .line .bagsvg { width: 56px; height: 56px; }
+      #buy .line em { font-style: normal; color: var(--yellow); }
+      #buy .bigbag { position: absolute; left: 130px; top: 1150px; width: 150px; height: 150px; }
+      #buy .bigbag .bagsvg { width: 150px; height: 150px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.5)); }
+      #buy .arrows { position: absolute; left: 165px; top: 1305px; display: flex; flex-direction: column; align-items: center; }
+      #buy .arrows i { width: 56px; height: 56px; border-right: 14px solid var(--yellow); border-bottom: 14px solid var(--yellow);
+                       transform: rotate(45deg); margin-top: -20px; display: block; filter: drop-shadow(0 0 3px #000); }
       /* CAPTIONS: Anton 60px, uppercase, black stroke, centre-bottom */
       .cap .capline { position: absolute; left: 120px; width: 840px; top: 1140px; display: flex; justify-content: center;
                       flex-wrap: wrap; gap: 0 22px; transform-origin: 50% 50%; }
@@ -311,19 +324,30 @@ TEMPLATE = r"""<!doctype html>
         </div>
       </div>
 
-      <!-- CTA 27-33.3s -->
-      <div class="clip" id="cta" data-start="27" data-duration="6.3" data-track-index="14">
+      <!-- USP 27-30s -->
+      <div class="clip" id="cta" data-start="27" data-duration="3" data-track-index="14">
         <div class="shade-top"></div>
         <div class="box">
-          <div class="chip label" id="cchip">Bonus percuma</div>
+          <div class="chip label" id="cchip">Bonus</div>
           <div class="display h" id="ch"><span id="ch1">Dapat beg kasut</span><br /><span class="y" id="ch2">sekali!</span></div>
           <div class="subp" id="csub">Kasut kotor boleh simpan terus</div>
         </div>
       </div>
-      <div class="clip" id="ctabtn" data-start="30.3" data-duration="3" data-track-index="15">
+      <!-- CTA 30-33.85s -->
+      <div class="clip" id="buy" data-start="30" data-duration="3.85" data-track-index="15">
+        <div class="shade-top"></div>
         <div class="shade-bot"></div>
-        <div class="btn display" id="cbtn">Beli sekarang &darr;</div>
-        <div class="brand label" id="cbrand"><span>Steapex &middot; Wind Spirit</span></div>
+        <div class="box">
+          <div class="display h1" id="bh1">Harga tengah</div>
+          <div class="display stamp" id="bstamp">Murah!</div>
+        </div>
+        <div class="card" id="bcard">
+          <div class="display pick">Pilih warna</div>
+          <div class="sw" id="bsw"><i style="background:#19d6c6"></i><i style="background:linear-gradient(135deg,#fff 45%,#7b3fe4)"></i><i style="background:#2b2d33"></i></div>
+          <div class="line">dekat <em>beg kuning</em> <svg class="bagsvg" viewBox="0 0 100 100"><path d="M32 34 V26 a18 18 0 0 1 36 0 V34" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round"/><path d="M14 32 H86 L80 92 H20 Z" fill="#ffe100" stroke="#000" stroke-width="6" stroke-linejoin="round"/><path d="M38 52 a12 12 0 0 0 24 0" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round"/></svg> bawah sekarang</div>
+        </div>
+        <div class="bigbag" id="bbag"><svg class="bagsvg" viewBox="0 0 100 100"><path d="M32 34 V26 a18 18 0 0 1 36 0 V34" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round"/><path d="M14 32 H86 L80 92 H20 Z" fill="#ffe100" stroke="#000" stroke-width="6" stroke-linejoin="round"/><path d="M38 52 a12 12 0 0 0 24 0" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round"/></svg></div>
+        <div class="arrows" id="barr"><i></i><i></i><i></i></div>
       </div>
 
       <!-- CAPTIONS -->
@@ -382,15 +406,28 @@ TEMPLATE = r"""<!doctype html>
         onUpdate: () => { document.getElementById("tval").textContent = km.v.toFixed(1); } }, 24.0);
       tl.fromTo("#tbar", { scaleX: 0 }, { scaleX: 1, duration: 1.8, ease: "power2.out" }, 24.0);
 
-      // CTA
+      // USP
       tl.fromTo("#cchip", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.5)" }, 27.05);
       tl.fromTo("#ch1", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 27.2);
       tl.fromTo("#ch2", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in" }, 27.4);
       tl.fromTo("#csub", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 27.8);
-      gsap.set("#cbtn", { xPercent: -50 });
-      tl.fromTo("#cbtn", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(2.2)" }, 30.75);
-      tl.fromTo("#cbrand", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 31.0);
-      tl.to("#cbtn", { scale: 1.07, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }, 31.3);
+
+      // CTA
+      tl.fromTo("#bh1", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 30.05);
+      tl.fromTo("#bstamp", { scale: 3, rotation: 0, opacity: 0 }, { scale: 1, rotation: -4, opacity: 1, duration: 0.3, ease: "power4.in" }, 30.3);
+      tl.fromTo("#bcard", { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, 31.0);
+      tl.fromTo("#bsw i", { scale: 0 }, { scale: 1, duration: 0.25, stagger: 0.08, ease: "back.out(3)" }, 31.25);
+      tl.fromTo("#bbag", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.4)" }, 31.6);
+      for (let k = 0; k < 4; k++) {
+        tl.to("#bbag", { y: -18, duration: 0.2, ease: "sine.out" }, 32.0 + k * 0.45);
+        tl.to("#bbag", { y: 0, duration: 0.2, ease: "sine.in" }, 32.2 + k * 0.45);
+      }
+      gsap.set("#barr i", { opacity: 0 });
+      for (let k = 0; k < 3; k++) {
+        tl.to("#barr i", { opacity: 1, duration: 0.15, stagger: 0.1 }, 31.8 + k * 0.5);
+        tl.to("#barr i", { opacity: 0.2, duration: 0.15, stagger: 0.1 }, 32.05 + k * 0.5);
+      }
+      tl.to("#barr i", { opacity: 1, duration: 0.15, stagger: 0.1 }, 33.3);
 
       // CAPTIONS (active word yellow, keywords neon green)
       __CAPTION_JS__

@@ -1,6 +1,6 @@
 {
   "fps": 60,
-  "duration": 33.3,
+  "duration": 33.85,
   "footage_volume": 0.3,
   "sfx_volume": 0.32,
   "clips": [
@@ -64,15 +64,15 @@
       "id": "c09",
       "file": "c09_bag.mp4",
       "start": 27.0,
-      "duration": 3.3,
-      "source": "lv_0_20251220180407 83-86.3 Steapex shoe bag"
+      "duration": 3.0,
+      "source": "lv_0_20251220180407 83-86 Steapex shoe bag (USP)"
     },
     {
       "id": "c10",
       "file": "c10_pair.mp4",
-      "start": 30.3,
-      "duration": 3.0,
-      "source": "lv_0_20251221130556 93-96 hero pair"
+      "start": 30.0,
+      "duration": 3.85,
+      "source": "lv_0_20251221130556 93.7-96.8 hero pair at 0.8x (CTA)"
     }
   ],
   "captions": [
@@ -248,19 +248,34 @@
       "gain": 0.9
     },
     {
-      "time": 27.35,
-      "name": "cha_ching",
-      "gain": 0.9
+      "time": 27.4,
+      "name": "ding",
+      "gain": 0.7
     },
     {
-      "time": 30.25,
+      "time": 29.95,
       "name": "whoosh",
       "gain": 0.8
     },
     {
-      "time": 30.8,
+      "time": 30.35,
+      "name": "cha_ching",
+      "gain": 0.9
+    },
+    {
+      "time": 31.05,
+      "name": "pop",
+      "gain": 0.8
+    },
+    {
+      "time": 31.65,
       "name": "pop",
       "gain": 0.9
+    },
+    {
+      "time": 32.2,
+      "name": "zap",
+      "gain": 0.6
     }
   ]
 }
