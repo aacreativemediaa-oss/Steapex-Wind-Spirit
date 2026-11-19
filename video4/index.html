@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Anton"; src: url("assets/fonts/Anton-latin.woff2") format("woff2"); font-weight: 400; font-display: block; }
+      @font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-latin.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      :root { --ground: #000; --ink: #fff; --yellow: #ffe100; --neon: #39ff14; --teal: #19d6c6; --red: #ff2d3d;
+              --font-display: "Anton", sans-serif; --font-label: "Montserrat", sans-serif; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      .clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+      video.shot { object-fit: cover; transform-origin: 50% 50%; }
+      .flash { background: #fff; opacity: 0; }
+      .display { font-family: var(--font-display); text-transform: uppercase; line-height: 0.95; color: #fff;
+                 -webkit-text-stroke: 8px #000; paint-order: stroke fill; }
+      .label { font-family: var(--font-label); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
+      .shade-top { position: absolute; left: 0; right: 0; top: 0; height: 900px;
+                   background: linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 55%, rgba(0,0,0,0) 100%); }
+      .shade-bot { position: absolute; left: 0; right: 0; bottom: 0; height: 760px;
+                   background: linear-gradient(0deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 100%); }
+
+      /* HOOK */
+      #hook .chip { position: absolute; top: 300px; left: 120px; right: 120px; text-align: center; }
+      #hook .chip span { display: inline-block; background: #000; color: var(--yellow); padding: 10px 24px; border-radius: 999px;
+                         font-size: 28px; border: 3px solid var(--yellow); }
+      #hook .h { position: absolute; top: 372px; left: 120px; right: 120px; text-align: center; font-size: 91px; }
+      #hook .h .y { color: var(--yellow); }
+      #hook .h .r { color: var(--red); }
+      #hook .xmark { position: absolute; left: 330px; top: 1440px; width: 400px; height: 400px; }
+      #hook .xmark svg { width: 100%; height: 100%; filter: drop-shadow(0 0 6px rgba(0,0,0,.7)); }
+
+      /* STEP COUNTER */
+      #steps .card { position: absolute; left: 120px; width: 660px; top: 340px; background: rgba(0,0,0,.75);
+                     border: 4px solid var(--neon); border-radius: 26px; padding: 20px 32px; }
+      #steps .lbl { color: #fff; font-size: 29px; }
+      #steps .val { font-family: var(--font-display); color: var(--neon); font-size: 119px; line-height: 1; margin-top: 6px; }
+      #steps .val small { font-size: 49px; color: #fff; margin-left: 10px; }
+      #steps .bar { height: 22px; background: rgba(255,255,255,.18); border-radius: 12px; overflow: hidden; margin-top: 12px; }
+      #steps .bar i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--teal), var(--neon));
+                      transform-origin: 0 50%; transform: scaleX(0); }
+
+      /* PAIN overlay */
+      #pain .vig { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(255,0,0,0) 45%, rgba(255,20,40,.55) 100%); opacity: 0; }
+      #pain .ring { position: absolute; left: 720px; top: 470px; width: 260px; height: 260px; border-radius: 50%;
+                    border: 10px solid var(--red); opacity: 0; box-shadow: 0 0 20px rgba(255,45,61,.7); }
+      #pain .warn { position: absolute; left: 140px; top: 330px; width: 150px; height: 150px; opacity: 0; }
+
+      /* FEATURE TITLE */
+      .feat .box { position: absolute; top: 330px; left: 120px; right: 120px; }
+      .feat .chip { display: inline-flex; align-items: center; gap: 14px; background: var(--neon); color: #000;
+                    padding: 12px 24px; border-radius: 14px; font-size: 28px; border: 4px solid #000; }
+      .feat .chip b { background: #000; color: var(--neon); border-radius: 8px; padding: 2px 12px; }
+      .feat .title { font-size: 98px; margin-top: 22px; overflow: hidden; padding-bottom: 8px; }
+      .feat .title > span { display: inline-block; }
+      .feat .sub { font-size: 50px; color: var(--yellow); margin-top: 6px; }
+      .feat .dots { position: absolute; top: 300px; left: 120px; display: flex; gap: 12px; }
+      .feat .dots i { width: 70px; height: 10px; border-radius: 6px; background: rgba(255,255,255,.35); display: block; }
+      .feat .dots i.on { background: var(--neon); }
+
+      /* SUN -> MOON */
+      #day .arc { position: absolute; left: 120px; top: 330px; width: 660px; height: 300px; }
+      #day .sun, #day .moon { position: absolute; width: 120px; height: 120px; border-radius: 50%; }
+      #day .sun { left: 120px; top: 500px; background: radial-gradient(circle, #ffe100 55%, #ff9f1a 100%); box-shadow: 0 0 40px #ffb000; opacity: 0; }
+      #day .moon { left: 660px; top: 500px; background: #f2f2ff; box-shadow: inset -28px 0 0 0 #c7c7e6, 0 0 30px #9aa0ff; opacity: 0; }
+      #day .track { position: absolute; left: 180px; top: 440px; width: 540px; height: 200px; border: 6px dashed rgba(255,255,255,.75);
+                    border-bottom: none; border-radius: 300px 300px 0 0; opacity: 0; }
+
+      /* HEAT arrows */
+      #heat .a { position: absolute; width: 70px; height: 70px; border-left: 14px solid #ff7a1a; border-top: 14px solid #ff7a1a;
+                 transform: rotate(45deg); filter: drop-shadow(0 0 4px #000); opacity: 0; }
+
+      /* CTA */
+      #buy .box { position: absolute; top: 330px; left: 120px; right: 120px; text-align: center; }
+      #buy .h1 { font-size: 84px; }
+      #buy .stamp { display: inline-block; margin-top: 14px; background: var(--yellow); color: #000; -webkit-text-stroke: 0;
+                    font-size: 140px; line-height: 1.05; padding: 8px 44px 4px; border: 8px solid #000; border-radius: 22px;
+                    box-shadow: 10px 10px 0 #000; transform-origin: 50% 50%; }
+      #buy .card { position: absolute; left: 120px; width: 660px; top: 800px; background: rgba(0,0,0,.8);
+                   border: 5px solid var(--neon); border-radius: 28px; padding: 22px 30px; text-align: center; }
+      #buy .pick { font-size: 67px; color: var(--neon); }
+      #buy .sw { display: flex; justify-content: center; gap: 18px; margin: 12px 0 10px; }
+      #buy .sw i { width: 58px; height: 58px; border-radius: 50%; border: 5px solid #fff; display: block; }
+      #buy .line { font-family: var(--font-label); font-weight: 800; color: #fff; font-size: 32px; line-height: 1.3;
+                   display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+      #buy .line .bagsvg { width: 54px; height: 54px; }
+      #buy .line em { font-style: normal; color: var(--yellow); }
+      #buy .bigbag { position: absolute; left: 130px; top: 1150px; width: 150px; height: 150px; }
+      #buy .bigbag .bagsvg { width: 150px; height: 150px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.5)); }
+      #buy .arrows { position: absolute; left: 165px; top: 1305px; display: flex; flex-direction: column; align-items: center; }
+      #buy .arrows i { width: 56px; height: 56px; border-right: 14px solid var(--yellow); border-bottom: 14px solid var(--yellow);
+                       transform: rotate(45deg); margin-top: -20px; display: block; filter: drop-shadow(0 0 3px #000); }
+
+      /* CAPTIONS: Anton 60px, uppercase, black stroke, centre-bottom */
+      .cap .capline { position: absolute; left: 120px; width: 840px; top: 1140px; display: flex; justify-content: center;
+                      flex-wrap: wrap; gap: 0 16px; transform-origin: 50% 50%; }
+      .cap .w { font-family: var(--font-display); font-size: 60px; line-height: 1.1; text-transform: uppercase; color: #fff;
+                -webkit-text-stroke: 10px #000; paint-order: stroke fill; display: inline-block; letter-spacing: 0.02em;
+                text-shadow: 0 4px 10px rgba(0,0,0,.5); }
+      .cap .w.kw { color: var(--neon); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="35.52" data-fps="60" data-width="1080" data-height="1920">
+      <!-- FOOTAGE (10 clips) -->
+      <video id="b01" class="clip shot" style="transform-origin:50% 70%" src="assets/clips/b01_tired.mp4" data-start="0.0" data-duration="3.7" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="0" playsinline></video>
+      <video id="b02" class="clip shot" src="assets/clips/b02_jog.mp4" data-start="3.7" data-duration="3.9" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="1" playsinline></video>
+      <video id="b03" class="clip shot" src="assets/clips/b03_toe.mp4" data-start="7.6" data-duration="3.6" data-media-start="0" muted data-track-index="2" playsinline></video>
+      <video id="b04" class="clip shot" src="assets/clips/b04_foamblk.mp4" data-start="11.2" data-duration="3.5" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="3" playsinline></video>
+      <video id="b05" class="clip shot" src="assets/clips/b05_run.mp4" data-start="14.7" data-duration="2.6" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="4" playsinline></video>
+      <video id="b06" class="clip shot" src="assets/clips/b06_flex.mp4" data-start="17.3" data-duration="2.3" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="5" playsinline></video>
+      <video id="b07" class="clip shot" src="assets/clips/b07_jump.mp4" data-start="19.6" data-duration="3.4" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="6" playsinline></video>
+      <video id="b08" class="clip shot" style="transform-origin:50% 70%" src="assets/clips/b08_step.mp4" data-start="23.0" data-duration="4.2" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="7" playsinline></video>
+      <video id="b09" class="clip shot" src="assets/clips/b09_smoke.mp4" data-start="27.2" data-duration="3.35" data-media-start="0" data-volume="0.08" data-has-audio="true" data-track-index="8" playsinline></video>
+      <video id="b10" class="clip shot" src="assets/clips/b10_cta.mp4" data-start="30.55" data-duration="4.97" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="9" playsinline></video>
+
+      <!-- VOICEOVER: original, 100%, uncut -->
+      <audio id="vo" src="assets/audio/vo.wav" data-start="0" data-duration="35.502" data-media-start="0" data-volume="1"></audio>
+
+      <!-- HOOK 0-3.7 -->
+      <div class="clip" id="hook" data-start="0" data-duration="3.7" data-track-index="11">
+        <div class="shade-top"></div>
+        <div class="chip"><span class="label" id="hchip">Nak kasut selesa untuk travel?</span></div>
+        <div class="display h" id="hh"><span id="hh1">Jangan pakai</span><br /><span class="y" id="hh2">kasut tapak</span> <span class="r" id="hh3">keras!</span></div>
+        <div class="xmark" id="hx"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="rgba(255,45,61,.18)" stroke="#ff2d3d" stroke-width="7"/>
+          <path d="M30 30 L70 70 M70 30 L30 70" stroke="#ff2d3d" stroke-width="10" stroke-linecap="round"/></svg></div>
+      </div>
+
+      <!-- STEP COUNTER 3.7-7.6 -->
+      <div class="clip" id="steps" data-start="3.7" data-duration="3.9" data-track-index="12">
+        <div class="shade-top"></div>
+        <div class="card" id="scard">
+          <div class="lbl label">Purata travel / sehari</div>
+          <div class="val"><span id="sval">0</span><small>step</small></div>
+          <div class="bar"><i id="sbar"></i></div>
+        </div>
+      </div>
+
+      <!-- PAIN 7.6-11.2 -->
+      <div class="clip" id="pain" data-start="7.6" data-duration="3.6" data-track-index="12">
+        <div class="vig" id="pvig"></div>
+        <div class="ring" id="pring"></div>
+        <svg class="warn" id="pwarn" viewBox="0 0 100 100"><path d="M50 6 L96 90 H4 Z" fill="#ff2d3d" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+          <rect x="45" y="34" width="10" height="30" rx="4" fill="#fff"/><circle cx="50" cy="75" r="6" fill="#fff"/></svg>
+      </div>
+
+      <!-- FEATURE 1: 11.2-17.3 -->
+      <div class="clip feat" id="f1" data-start="11.2" data-duration="6.1" data-track-index="13">
+        <div class="shade-top"></div>
+        <div class="dots"><i class="on"></i><i></i><i></i></div>
+        <div class="box">
+          <div class="chip label" id="f1chip">Ciri <b>#1</b></div>
+          <div class="display title"><span id="f1t">Foam tebal</span></div>
+          <div class="display sub" id="f1s">+ Serap hentakan</div>
+        </div>
+      </div>
+
+      <!-- FEATURE 2: 17.3-23.0 -->
+      <div class="clip feat" id="f2" data-start="17.3" data-duration="5.7" data-track-index="13">
+        <div class="shade-top"></div>
+        <div class="dots"><i class="on"></i><i class="on"></i><i></i></div>
+        <div class="box">
+          <div class="chip label" id="f2chip">Ciri <b>#2</b></div>
+          <div class="display title"><span id="f2t">Plate flexible</span></div>
+        </div>
+      </div>
+
+      <!-- DAY ARC 23.0-27.2 -->
+      <div class="clip" id="day" data-start="23" data-duration="4.2" data-track-index="13">
+        <div class="shade-top"></div>
+        <div class="track" id="dtrack"></div>
+        <div class="sun" id="dsun"></div>
+        <div class="moon" id="dmoon"></div>
+      </div>
+
+      <!-- FEATURE 3: 27.2-30.55 -->
+      <div class="clip feat" id="f3" data-start="27.2" data-duration="3.35" data-track-index="13">
+        <div class="shade-top"></div>
+        <div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        <div class="box">
+          <div class="chip label" id="f3chip">Ciri <b>#3</b></div>
+          <div class="display title"><span id="f3t">Kain breathable</span></div>
+        </div>
+      </div>
+      <div class="clip" id="heat" data-start="28.2" data-duration="2.3" data-track-index="14">
+        <div class="a" id="ha1" style="left:700px;top:900px"></div>
+        <div class="a" id="ha2" style="left:800px;top:960px"></div>
+        <div class="a" id="ha3" style="left:900px;top:900px"></div>
+      </div>
+
+      <!-- CTA 30.55-end -->
+      <div class="clip" id="buy" data-start="30.55" data-duration="4.97" data-track-index="15">
+        <div class="shade-top"></div>
+        <div class="shade-bot"></div>
+        <div class="box">
+          <div class="display h1" id="bh1">Harga tengah</div>
+          <div class="display stamp" id="bstamp">Murah!</div>
+        </div>
+        <div class="card" id="bcard">
+          <div class="display pick">Pilih warna &amp; saiz</div>
+          <div class="sw" id="bsw"><i style="background:#19d6c6"></i><i style="background:linear-gradient(135deg,#fff 45%,#7b3fe4)"></i><i style="background:#2b2d33"></i></div>
+          <div class="line">kat <em>beg kuning</em> <svg class="bagsvg" viewBox="0 0 100 100"><path d="M32 34 V26 a18 18 0 0 1 36 0 V34" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round"/><path d="M14 32 H86 L80 92 H20 Z" fill="#ffe100" stroke="#000" stroke-width="6" stroke-linejoin="round"/><path d="M38 52 a12 12 0 0 0 24 0" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round"/></svg> bawah ni</div>
+        </div>
+        <div class="bigbag" id="bbag"><svg class="bagsvg" viewBox="0 0 100 100"><path d="M32 34 V26 a18 18 0 0 1 36 0 V34" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round"/><path d="M14 32 H86 L80 92 H20 Z" fill="#ffe100" stroke="#000" stroke-width="6" stroke-linejoin="round"/><path d="M38 52 a12 12 0 0 0 24 0" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round"/></svg></div>
+        <div class="arrows" id="barr"><i></i><i></i><i></i></div>
+      </div>
+
+      <!-- CAPTIONS -->
+      <div class="clip cap" id="c5" data-start="3.76" data-duration="0.525" data-track-index="20"><div class="capline"><span class="w" id="c5w0">SEBAB</span><span class="w" id="c5w1">BILA</span></div></div>
+      <div class="clip cap" id="c6" data-start="4.285" data-duration="1.051" data-track-index="20"><div class="capline"><span class="w" id="c6w0">PERGI</span><span class="w kw" id="c6w1">TRAVEL</span></div></div>
+      <div class="clip cap" id="c9" data-start="7.66" data-duration="0.502" data-track-index="20"><div class="capline"><span class="w" id="c9w0">KALAU</span><span class="w kw" id="c9w1">SALAH</span></div></div>
+      <div class="clip cap" id="c10" data-start="8.162" data-duration="0.552" data-track-index="20"><div class="capline"><span class="w" id="c10w0">PAKAI</span><span class="w" id="c10w1">KASUT</span></div></div>
+      <div class="clip cap" id="c11" data-start="8.714" data-duration="0.754" data-track-index="20"><div class="capline"><span class="w" id="c11w0">TUMIT</span><span class="w" id="c11w1">CEPAT</span><span class="w kw" id="c11w2">SAKIT</span></div></div>
+      <div class="clip cap" id="c12" data-start="9.468" data-duration="0.852" data-track-index="20"><div class="capline"><span class="w" id="c12w0">MACAM</span><span class="w" id="c12w1">NI</span><span class="w" id="c12w2">TAU</span></div></div>
+      <div class="clip cap" id="c13" data-start="10.34" data-duration="0.96" data-track-index="20"><div class="capline"><span class="w" id="c13w0">MEMANG</span><span class="w kw" id="c13w1">PEDIH</span><span class="w" id="c13w2">GILA</span></div></div>
+      <div class="clip cap" id="c14" data-start="11.34" data-duration="0.612" data-track-index="20"><div class="capline"><span class="w" id="c14w0">SEBAB</span><span class="w" id="c14w1">TU</span><span class="w" id="c14w2">KORANG</span></div></div>
+      <div class="clip cap" id="c15" data-start="11.952" data-duration="0.773" data-track-index="20"><div class="capline"><span class="w" id="c15w0">KENA</span><span class="w kw" id="c15w1">PILIH</span></div></div>
+      <div class="clip cap" id="c19" data-start="14.9" data-duration="0.51" data-track-index="20"><div class="capline"><span class="w" id="c19w0">NAK</span><span class="w" id="c19w1">BERJALAN</span></div></div>
+      <div class="clip cap" id="c20" data-start="15.41" data-duration="0.51" data-track-index="20"><div class="capline"><span class="w" id="c20w0">LAMA</span><span class="w" id="c20w1">PUN</span><span class="w kw" id="c20w2">TAK</span></div></div>
+      <div class="clip cap" id="c21" data-start="15.92" data-duration="0.743" data-track-index="20"><div class="capline"><span class="w kw" id="c21w0">PEDIH</span><span class="w" id="c21w1">TUMIT</span><span class="w" id="c21w2">KORANG</span></div></div>
+      <div class="clip cap" id="c22" data-start="16.663" data-duration="0.767" data-track-index="20"><div class="capline"><span class="w" id="c22w0">NANTI</span><span class="w" id="c22w1">TAU</span></div></div>
+      <div class="clip cap" id="c26" data-start="19.76" data-duration="0.693" data-track-index="20"><div class="capline"><span class="w" id="c26w0">SO</span><span class="w" id="c26w1">LANGKAH</span><span class="w" id="c26w2">KORANG</span></div></div>
+      <div class="clip cap" id="c27" data-start="20.453" data-duration="0.739" data-track-index="20"><div class="capline"><span class="w" id="c27w0">JADI</span><span class="w" id="c27w1">LEBIH</span><span class="w kw" id="c27w2">STABIL</span></div></div>
+      <div class="clip cap" id="c28" data-start="21.192" data-duration="0.647" data-track-index="20"><div class="capline"><span class="w" id="c28w0">ESPECIALLY</span><span class="w" id="c28w1">BILA</span></div></div>
+      <div class="clip cap" id="c29" data-start="21.839" data-duration="0.647" data-track-index="20"><div class="capline"><span class="w" id="c29w0">PIJAK</span><span class="w" id="c29w1">PERMUKAAN</span></div></div>
+      <div class="clip cap" id="c30" data-start="22.486" data-duration="0.554" data-track-index="20"><div class="capline"><span class="w" id="c30w0">YANG</span><span class="w kw" id="c30w1">TAK</span><span class="w kw" id="c30w2">RATA</span></div></div>
+      <div class="clip cap" id="c31" data-start="23.04" data-duration="0.654" data-track-index="20"><div class="capline"><span class="w" id="c31w0">DAN</span><span class="w" id="c31w1">YANG</span><span class="w" id="c31w2">PALING</span></div></div>
+      <div class="clip cap" id="c32" data-start="23.694" data-duration="0.403" data-track-index="20"><div class="capline"><span class="w kw" id="c32w0">BEST</span><span class="w" id="c32w1">KAN</span></div></div>
+      <div class="clip cap" id="c33" data-start="24.097" data-duration="0.704" data-track-index="20"><div class="capline"><span class="w" id="c33w0">KORANG</span><span class="w" id="c33w1">BERJALAN</span></div></div>
+      <div class="clip cap" id="c34" data-start="24.801" data-duration="0.604" data-track-index="20"><div class="capline"><span class="w" id="c34w0">DARIPADA</span><span class="w kw" id="c34w1">PAGI</span></div></div>
+      <div class="clip cap" id="c35" data-start="25.405" data-duration="0.654" data-track-index="20"><div class="capline"><span class="w" id="c35w0">SAMPAI</span><span class="w" id="c35w1">KE</span><span class="w kw" id="c35w2">MALAM</span></div></div>
+      <div class="clip cap" id="c36" data-start="26.059" data-duration="0.81" data-track-index="20"><div class="capline"><span class="w" id="c36w0">PUN</span><span class="w" id="c36w1">MEMANG</span></div></div>
+      <div class="clip cap" id="c37" data-start="26.869" data-duration="0.967" data-track-index="20"><div class="capline"><span class="w kw" id="c37w0">SELESA</span><span class="w" id="c37w1">SANGAT</span></div></div>
+      <div class="clip cap" id="c40" data-start="29.34" data-duration="0.459" data-track-index="20"><div class="capline"><span class="w" id="c40w0">LANGSUNG</span><span class="w" id="c40w1">TAK</span></div></div>
+      <div class="clip cap" id="c41" data-start="29.799" data-duration="0.851" data-track-index="20"><div class="capline"><span class="w" id="c41w0">RASA</span><span class="w kw" id="c41w1">BERKUAP</span></div></div>
+      <div class="clip cap" id="c44" data-start="32.1" data-duration="0.461" data-track-index="20"><div class="capline"><span class="w" id="c44w0">SO</span><span class="w" id="c44w1">SEBELUM</span></div></div>
+      <div class="clip cap" id="c45" data-start="32.561" data-duration="1.118" data-track-index="20"><div class="capline"><span class="w" id="c45w0">KORANG</span><span class="w kw" id="c45w1">TERLEPAS</span></div></div>
+
+      <!-- WHITE FLASH ON EVERY CUT -->
+      <div class="clip flash" id="fl0" data-start="3.7" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl1" data-start="7.6" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl2" data-start="11.2" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl3" data-start="14.7" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl4" data-start="17.3" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl5" data-start="19.6" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl6" data-start="23.0" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl7" data-start="27.2" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl8" data-start="30.55" data-duration="0.3" data-track-index="30"></div>
+
+      <!-- SFX (synthesised, low) -->
+      <audio id="sfx0" src="assets/sfx/impact.wav" data-start="0.02" data-duration="0.9" data-volume="0.27"></audio>
+      <audio id="sfx1" src="assets/sfx/whoosh.wav" data-start="0.3" data-duration="0.45" data-volume="0.21"></audio>
+      <audio id="sfx2" src="assets/sfx/zap.wav" data-start="1.75" data-duration="0.25" data-volume="0.21"></audio>
+      <audio id="sfx3" src="assets/sfx/whoosh.wav" data-start="3.65" data-duration="0.45" data-volume="0.21"></audio>
+      <audio id="sfx4" src="assets/sfx/pop.wav" data-start="5.0" data-duration="0.12" data-volume="0.18"></audio>
+      <audio id="sfx5" src="assets/sfx/ding.wav" data-start="7.05" data-duration="1.0" data-volume="0.18"></audio>
+      <audio id="sfx6" src="assets/sfx/whoosh.wav" data-start="7.55" data-duration="0.45" data-volume="0.21"></audio>
+      <audio id="sfx7" src="assets/sfx/pop.wav" data-start="10.55" data-duration="0.12" data-volume="0.21"></audio>
+      <audio id="sfx8" src="assets/sfx/zap.wav" data-start="11.15" data-duration="0.25" data-volume="0.18"></audio>
+      <audio id="sfx9" src="assets/sfx/ding.wav" data-start="11.4" data-duration="1.0" data-volume="0.18"></audio>
+      <audio id="sfx10" src="assets/sfx/whoosh.wav" data-start="14.65" data-duration="0.45" data-volume="0.21"></audio>
+      <audio id="sfx11" src="assets/sfx/zap.wav" data-start="17.25" data-duration="0.25" data-volume="0.18"></audio>
+      <audio id="sfx12" src="assets/sfx/ding.wav" data-start="17.45" data-duration="1.0" data-volume="0.18"></audio>
+      <audio id="sfx13" src="assets/sfx/whoosh.wav" data-start="19.55" data-duration="0.45" data-volume="0.21"></audio>
+      <audio id="sfx14" src="assets/sfx/whoosh.wav" data-start="22.95" data-duration="0.45" data-volume="0.21"></audio>
+      <audio id="sfx15" src="assets/sfx/pop.wav" data-start="25.2" data-duration="0.12" data-volume="0.21"></audio>
+      <audio id="sfx16" src="assets/sfx/pop.wav" data-start="25.8" data-duration="0.12" data-volume="0.21"></audio>
+      <audio id="sfx17" src="assets/sfx/zap.wav" data-start="27.15" data-duration="0.25" data-volume="0.18"></audio>
+      <audio id="sfx18" src="assets/sfx/ding.wav" data-start="27.55" data-duration="1.0" data-volume="0.18"></audio>
+      <audio id="sfx19" src="assets/sfx/riser.wav" data-start="29.05" data-duration="1.5" data-volume="0.18"></audio>
+      <audio id="sfx20" src="assets/sfx/impact.wav" data-start="30.52" data-duration="0.9" data-volume="0.24"></audio>
+      <audio id="sfx21" src="assets/sfx/cha_ching.wav" data-start="31.2" data-duration="1.1" data-volume="0.24"></audio>
+      <audio id="sfx22" src="assets/sfx/pop.wav" data-start="33.35" data-duration="0.12" data-volume="0.21"></audio>
+      <audio id="sfx23" src="assets/sfx/pop.wav" data-start="33.85" data-duration="0.12" data-volume="0.24"></audio>
+      <audio id="sfx24" src="assets/sfx/zap.wav" data-start="34.5" data-duration="0.25" data-volume="0.15"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#b01",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},0.0);tl.to("#b01",{scale:1.11,duration:3.25,ease:"none"},0.45);
+      tl.fromTo("#b02",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},3.7);tl.to("#b02",{scale:1.11,duration:3.45,ease:"none"},4.15);
+      tl.fromTo("#b03",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},7.6);tl.to("#b03",{scale:1.11,duration:3.15,ease:"none"},8.05);
+      tl.fromTo("#b04",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},11.2);tl.to("#b04",{scale:1.11,duration:3.05,ease:"none"},11.65);
+      tl.fromTo("#b05",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},14.7);tl.to("#b05",{scale:1.11,duration:2.15,ease:"none"},15.15);
+      tl.fromTo("#b06",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},17.3);tl.to("#b06",{scale:1.11,duration:1.85,ease:"none"},17.75);
+      tl.fromTo("#b07",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},19.6);tl.to("#b07",{scale:1.11,duration:2.95,ease:"none"},20.05);
+      tl.fromTo("#b08",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},23.0);tl.to("#b08",{scale:1.11,duration:3.75,ease:"none"},23.45);
+      tl.fromTo("#b09",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},27.2);tl.to("#b09",{scale:1.11,duration:2.9,ease:"none"},27.65);
+      tl.fromTo("#b10",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},30.55);tl.to("#b10",{scale:1.11,duration:4.52,ease:"none"},31.0);
+      tl.fromTo("#fl0",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},3.7);
+      tl.fromTo("#fl1",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},7.6);
+      tl.fromTo("#fl2",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},11.2);
+      tl.fromTo("#fl3",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},14.7);
+      tl.fromTo("#fl4",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},17.3);
+      tl.fromTo("#fl5",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},19.6);
+      tl.fromTo("#fl6",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},23.0);
+      tl.fromTo("#fl7",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},27.2);
+      tl.fromTo("#fl8",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},30.55);
+
+      // HOOK
+      tl.fromTo("#hchip", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3 }, 0.05);
+      tl.fromTo("#hh1", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.25, ease: "power4.in" }, 1.42);
+      tl.fromTo("#hh2", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25, ease: "power3.out" }, 2.2);
+      tl.fromTo("#hh3", { scale: 2.2, rotation: -12, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.3, ease: "power4.in" }, 2.95);
+      tl.fromTo("#hx", { scale: 0, rotation: -40, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.3, ease: "back.out(2.2)" }, 1.72);
+      tl.to("#hx", { scale: 1.08, duration: 0.15, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.95);
+
+      // STEP COUNTER
+      tl.fromTo("#scard", { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 4.0);
+      const st = { v: 0 };
+      tl.fromTo(st, { v: 0 }, { v: 10000, duration: 2.0, ease: "power2.out",
+        onUpdate: () => { document.getElementById("sval").textContent = String(Math.round(st.v)).replace(/\B(?=(\d{3})+(?!\d))/g, ","); } }, 5.0);
+      tl.fromTo("#sbar", { scaleX: 0 }, { scaleX: 1, duration: 2.0, ease: "power2.out" }, 5.0);
+
+      // PAIN
+      gsap.set(["#pvig", "#pring", "#pwarn"], { opacity: 0 });
+      [9.22, 10.59].forEach((t) => {
+        tl.fromTo("#pvig", { opacity: 0 }, { opacity: 1, duration: 0.15, immediateRender: false }, t);
+        tl.to("#pvig", { opacity: 0, duration: 0.5 }, t + 0.15);
+      });
+      tl.fromTo("#pring", { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.25, ease: "back.out(2)", immediateRender: false }, 10.55);
+      tl.to("#pring", { scale: 1.1, duration: 0.15, yoyo: true, repeat: 1 }, 10.82);
+      tl.fromTo("#pwarn", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.5)", immediateRender: false }, 8.95);
+
+      // FEATURE TITLES
+      [["f1", 11.2], ["f2", 17.3], ["f3", 27.2]].forEach(([id, t]) => {
+        tl.fromTo(`#${id}chip`, { x: -260, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "back.out(1.8)" }, t + 0.05);
+        tl.fromTo(`#${id}t`, { yPercent: 105 }, { yPercent: 0, duration: 0.35, ease: "power3.out" }, t + 0.15);
+        tl.fromTo(`#${id} .dots`, { opacity: 0 }, { opacity: 1, duration: 0.25 }, t);
+      });
+      tl.fromTo("#f1s", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 13.5);
+
+      // DAY ARC (pagi -> malam)
+      tl.fromTo("#dtrack", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 24.6);
+      tl.fromTo("#dsun", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.5)" }, 25.2);
+      tl.to("#dsun", { x: 270, y: -150, duration: 0.3, ease: "sine.out" }, 25.45);
+      tl.to("#dsun", { x: 540, y: 0, opacity: 0, duration: 0.3, ease: "sine.in" }, 25.75);
+      tl.fromTo("#dmoon", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.5)" }, 25.81);
+
+      // HEAT rising
+      ["#ha1", "#ha2", "#ha3"].forEach((s, i) => {
+        for (let k = 0; k < 2; k++) {
+          const t = 28.3 + i * 0.2 + k * 0.95;
+          tl.fromTo(s, { y: 0, opacity: 0 }, { y: -260, opacity: 1, duration: 0.45, ease: "none", immediateRender: k === 0 }, t);
+          tl.to(s, { y: -360, opacity: 0, duration: 0.3, ease: "none" }, t + 0.45);
+        }
+      });
+
+      // CTA
+      tl.fromTo("#bh1", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 30.64);
+      tl.fromTo("#bstamp", { scale: 3, rotation: 0, opacity: 0 }, { scale: 1, rotation: -4, opacity: 1, duration: 0.3, ease: "power4.in" }, 31.1);
+      tl.fromTo("#bcard", { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, 33.3);
+      tl.fromTo("#bsw i", { scale: 0 }, { scale: 1, duration: 0.25, stagger: 0.08, ease: "back.out(3)" }, 33.85);
+      tl.fromTo("#bbag", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.4)" }, 33.85);
+      for (let k = 0; k < 2; k++) {
+        tl.to("#bbag", { y: -18, duration: 0.2, ease: "sine.out" }, 34.35 + k * 0.45);
+        tl.to("#bbag", { y: 0, duration: 0.2, ease: "sine.in" }, 34.55 + k * 0.45);
+      }
+      gsap.set("#barr i", { opacity: 0 });
+      tl.to("#barr i", { opacity: 1, duration: 0.15, stagger: 0.1 }, 34.1);
+      tl.to("#barr i", { opacity: 0.2, duration: 0.15, stagger: 0.1 }, 34.55);
+      tl.to("#barr i", { opacity: 1, duration: 0.15, stagger: 0.1 }, 35.0);
+
+      // CAPTIONS (word timing from the VO; active word yellow, keywords neon green)
+      tl.set("#c5w0",{color:"var(--yellow)"},3.76);tl.set("#c5w0",{color:"#fff"},4.052);
+      tl.set("#c5w1",{color:"var(--yellow)"},4.052);tl.set("#c5w1",{color:"#fff"},4.285);
+      tl.fromTo("#c5 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},3.76);
+      tl.set("#c6w0",{color:"var(--yellow)"},4.285);tl.set("#c6w0",{color:"#fff"},4.577);
+      tl.fromTo("#c6w1",{scale:1},{scale:1.14,duration:0.08},4.577);tl.to("#c6w1",{scale:1,duration:0.1},4.986);
+      tl.fromTo("#c6 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},4.285);
+      tl.set("#c9w0",{color:"var(--yellow)"},7.66);tl.set("#c9w0",{color:"#fff"},7.911);
+      tl.fromTo("#c9w1",{scale:1},{scale:1.14,duration:0.08},7.911);tl.to("#c9w1",{scale:1,duration:0.1},8.162);
+      tl.fromTo("#c9 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},7.66);
+      tl.set("#c10w0",{color:"var(--yellow)"},8.162);tl.set("#c10w0",{color:"#fff"},8.413);
+      tl.set("#c10w1",{color:"var(--yellow)"},8.413);tl.set("#c10w1",{color:"#fff"},8.714);
+      tl.fromTo("#c10 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},8.162);
+      tl.set("#c11w0",{color:"var(--yellow)"},8.714);tl.set("#c11w0",{color:"#fff"},8.966);
+      tl.set("#c11w1",{color:"var(--yellow)"},8.966);tl.set("#c11w1",{color:"#fff"},9.217);
+      tl.fromTo("#c11w2",{scale:1},{scale:1.14,duration:0.08},9.217);tl.to("#c11w2",{scale:1,duration:0.1},9.468);
+      tl.fromTo("#c11 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},8.714);
+      tl.set("#c12w0",{color:"var(--yellow)"},9.468);tl.set("#c12w0",{color:"#fff"},9.719);
+      tl.set("#c12w1",{color:"var(--yellow)"},9.719);tl.set("#c12w1",{color:"#fff"},9.819);
+      tl.set("#c12w2",{color:"var(--yellow)"},9.819);tl.set("#c12w2",{color:"#fff"},10.02);
+      tl.fromTo("#c12 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},9.468);
+      tl.set("#c13w0",{color:"var(--yellow)"},10.34);tl.set("#c13w0",{color:"#fff"},10.588);
+      tl.fromTo("#c13w1",{scale:1},{scale:1.14,duration:0.08},10.588);tl.to("#c13w1",{scale:1,duration:0.1},10.794);
+      tl.set("#c13w2",{color:"var(--yellow)"},10.794);tl.set("#c13w2",{color:"#fff"},11);
+      tl.fromTo("#c13 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},10.34);
+      tl.set("#c14w0",{color:"var(--yellow)"},11.34);tl.set("#c14w0",{color:"#fff"},11.575);
+      tl.set("#c14w1",{color:"var(--yellow)"},11.575);tl.set("#c14w1",{color:"#fff"},11.669);
+      tl.set("#c14w2",{color:"var(--yellow)"},11.669);tl.set("#c14w2",{color:"#fff"},11.952);
+      tl.fromTo("#c14 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},11.34);
+      tl.set("#c15w0",{color:"var(--yellow)"},11.952);tl.set("#c15w0",{color:"#fff"},12.14);
+      tl.fromTo("#c15w1",{scale:1},{scale:1.14,duration:0.08},12.14);tl.to("#c15w1",{scale:1,duration:0.1},12.375);
+      tl.fromTo("#c15 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},11.952);
+      tl.set("#c19w0",{color:"var(--yellow)"},14.9);tl.set("#c19w0",{color:"#fff"},15.039);
+      tl.set("#c19w1",{color:"var(--yellow)"},15.039);tl.set("#c19w1",{color:"#fff"},15.41);
+      tl.fromTo("#c19 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},14.9);
+      tl.set("#c20w0",{color:"var(--yellow)"},15.41);tl.set("#c20w0",{color:"#fff"},15.596);
+      tl.set("#c20w1",{color:"var(--yellow)"},15.596);tl.set("#c20w1",{color:"#fff"},15.781);
+      tl.fromTo("#c20w2",{scale:1},{scale:1.14,duration:0.08},15.781);tl.to("#c20w2",{scale:1,duration:0.1},15.92);
+      tl.fromTo("#c20 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},15.41);
+      tl.fromTo("#c21w0",{scale:1},{scale:1.14,duration:0.08},15.92);tl.to("#c21w0",{scale:1,duration:0.1},16.152);
+      tl.set("#c21w1",{color:"var(--yellow)"},16.152);tl.set("#c21w1",{color:"#fff"},16.384);
+      tl.set("#c21w2",{color:"var(--yellow)"},16.384);tl.set("#c21w2",{color:"#fff"},16.663);
+      tl.fromTo("#c21 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},15.92);
+      tl.set("#c22w0",{color:"var(--yellow)"},16.663);tl.set("#c22w0",{color:"#fff"},16.894);
+      tl.set("#c22w1",{color:"var(--yellow)"},16.894);tl.set("#c22w1",{color:"#fff"},17.08);
+      tl.fromTo("#c22 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},16.663);
+      tl.set("#c26w0",{color:"var(--yellow)"},19.76);tl.set("#c26w0",{color:"#fff"},19.852);
+      tl.set("#c26w1",{color:"var(--yellow)"},19.852);tl.set("#c26w1",{color:"#fff"},20.176);
+      tl.set("#c26w2",{color:"var(--yellow)"},20.176);tl.set("#c26w2",{color:"#fff"},20.453);
+      tl.fromTo("#c26 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},19.76);
+      tl.set("#c27w0",{color:"var(--yellow)"},20.453);tl.set("#c27w0",{color:"#fff"},20.638);
+      tl.set("#c27w1",{color:"var(--yellow)"},20.638);tl.set("#c27w1",{color:"#fff"},20.869);
+      tl.fromTo("#c27w2",{scale:1},{scale:1.14,duration:0.08},20.869);tl.to("#c27w2",{scale:1,duration:0.1},21.192);
+      tl.fromTo("#c27 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},20.453);
+      tl.set("#c28w0",{color:"var(--yellow)"},21.192);tl.set("#c28w0",{color:"#fff"},21.654);
+      tl.set("#c28w1",{color:"var(--yellow)"},21.654);tl.set("#c28w1",{color:"#fff"},21.839);
+      tl.fromTo("#c28 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},21.192);
+      tl.set("#c29w0",{color:"var(--yellow)"},21.839);tl.set("#c29w0",{color:"#fff"},22.07);
+      tl.set("#c29w1",{color:"var(--yellow)"},22.07);tl.set("#c29w1",{color:"#fff"},22.486);
+      tl.fromTo("#c29 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},21.839);
+      tl.set("#c30w0",{color:"var(--yellow)"},22.486);tl.set("#c30w0",{color:"#fff"},22.67);
+      tl.fromTo("#c30w1",{scale:1},{scale:1.14,duration:0.08},22.67);tl.to("#c30w1",{scale:1,duration:0.1},22.809);
+      tl.fromTo("#c30w2",{scale:1},{scale:1.14,duration:0.08},22.809);tl.to("#c30w2",{scale:1,duration:0.1},23.04);
+      tl.fromTo("#c30 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},22.486);
+      tl.set("#c31w0",{color:"var(--yellow)"},23.04);tl.set("#c31w0",{color:"#fff"},23.191);
+      tl.set("#c31w1",{color:"var(--yellow)"},23.191);tl.set("#c31w1",{color:"#fff"},23.392);
+      tl.set("#c31w2",{color:"var(--yellow)"},23.392);tl.set("#c31w2",{color:"#fff"},23.694);
+      tl.fromTo("#c31 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},23.04);
+      tl.fromTo("#c32w0",{scale:1},{scale:1.14,duration:0.08},23.694);tl.to("#c32w0",{scale:1,duration:0.1},23.895);
+      tl.set("#c32w1",{color:"var(--yellow)"},23.895);tl.set("#c32w1",{color:"#fff"},24.097);
+      tl.fromTo("#c32 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},23.694);
+      tl.set("#c33w0",{color:"var(--yellow)"},24.097);tl.set("#c33w0",{color:"#fff"},24.398);
+      tl.set("#c33w1",{color:"var(--yellow)"},24.398);tl.set("#c33w1",{color:"#fff"},24.801);
+      tl.fromTo("#c33 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},24.097);
+      tl.set("#c34w0",{color:"var(--yellow)"},24.801);tl.set("#c34w0",{color:"#fff"},25.203);
+      tl.fromTo("#c34w1",{scale:1},{scale:1.14,duration:0.08},25.203);tl.to("#c34w1",{scale:1,duration:0.1},25.405);
+      tl.fromTo("#c34 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},24.801);
+      tl.set("#c35w0",{color:"var(--yellow)"},25.405);tl.set("#c35w0",{color:"#fff"},25.707);
+      tl.set("#c35w1",{color:"var(--yellow)"},25.707);tl.set("#c35w1",{color:"#fff"},25.807);
+      tl.fromTo("#c35w2",{scale:1},{scale:1.14,duration:0.08},25.807);tl.to("#c35w2",{scale:1,duration:0.1},26.059);
+      tl.fromTo("#c35 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},25.405);
+      tl.set("#c36w0",{color:"var(--yellow)"},26.059);tl.set("#c36w0",{color:"#fff"},26.26);
+      tl.set("#c36w1",{color:"var(--yellow)"},26.56);tl.set("#c36w1",{color:"#fff"},26.869);
+      tl.fromTo("#c36 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},26.059);
+      tl.fromTo("#c37w0",{scale:1},{scale:1.14,duration:0.08},26.869);tl.to("#c37w0",{scale:1,duration:0.1},27.177);
+      tl.set("#c37w1",{color:"var(--yellow)"},27.177);tl.set("#c37w1",{color:"#fff"},27.486);
+      tl.fromTo("#c37 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},26.869);
+      tl.set("#c40w0",{color:"var(--yellow)"},29.34);tl.set("#c40w0",{color:"#fff"},29.674);
+      tl.set("#c40w1",{color:"var(--yellow)"},29.674);tl.set("#c40w1",{color:"#fff"},29.799);
+      tl.fromTo("#c40 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},29.34);
+      tl.set("#c41w0",{color:"var(--yellow)"},29.799);tl.set("#c41w0",{color:"#fff"},29.966);
+      tl.fromTo("#c41w1",{scale:1},{scale:1.14,duration:0.08},29.966);tl.to("#c41w1",{scale:1,duration:0.1},30.3);
+      tl.fromTo("#c41 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},29.799);
+      tl.set("#c44w0",{color:"var(--yellow)"},32.1);tl.set("#c44w0",{color:"#fff"},32.202);
+      tl.set("#c44w1",{color:"var(--yellow)"},32.202);tl.set("#c44w1",{color:"#fff"},32.561);
+      tl.fromTo("#c44 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},32.1);
+      tl.set("#c45w0",{color:"var(--yellow)"},32.561);tl.set("#c45w0",{color:"#fff"},32.868);
+      tl.fromTo("#c45w1",{scale:1},{scale:1.14,duration:0.08},32.868);tl.to("#c45w1",{scale:1,duration:0.1},33.329);
+      tl.fromTo("#c45 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},32.561);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

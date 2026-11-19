@@ -1,0 +1,517 @@
+{
+  "fps": 60,
+  "duration": 35.52,
+  "voiceover": {
+    "file": "assets/audio/vo.wav",
+    "start": 0,
+    "volume": 1.0,
+    "length": 35.502
+  },
+  "footage_volume": 0.3,
+  "sfx_volume": 0.3,
+  "clips": [
+    {
+      "id": "b01",
+      "file": "b01_tired.mp4",
+      "start": 0.0,
+      "duration": 3.7,
+      "volume": 0.3,
+      "source": "B ROLL video_20251226_091215 0.6-4.3 runner bent over, other-brand shoes (intro, one shot, natural speed)"
+    },
+    {
+      "id": "b02",
+      "file": "b02_jog.mp4",
+      "start": 3.7,
+      "duration": 3.9,
+      "volume": 0.3,
+      "source": "lv_0_20251221233711 54.45-58.35 jogging on the spot, teal"
+    },
+    {
+      "id": "b03",
+      "file": "b03_toe.mp4",
+      "start": 7.6,
+      "duration": 3.6,
+      "volume": 0.0,
+      "source": "B ROLL video_20250529_093604 0.5-4.1 bruised toenail close-up (muted: speech)"
+    },
+    {
+      "id": "b04",
+      "file": "b04_foamblk.mp4",
+      "start": 11.2,
+      "duration": 3.5,
+      "volume": 0.3,
+      "source": "lv_0_20251220180407 56.65-60.15 squeezing midsole foam, black"
+    },
+    {
+      "id": "b05",
+      "file": "b05_run.mp4",
+      "start": 14.7,
+      "duration": 2.6,
+      "volume": 0.3,
+      "source": "video_20260429_114602 4.0-6.6 jogging on track, teal"
+    },
+    {
+      "id": "b06",
+      "file": "b06_flex.mp4",
+      "start": 17.3,
+      "duration": 2.3,
+      "volume": 0.3,
+      "source": "lv_0_20251221130556 40.5-42.8 sole flex, teal"
+    },
+    {
+      "id": "b07",
+      "file": "b07_jump.mp4",
+      "start": 19.6,
+      "duration": 3.4,
+      "volume": 0.3,
+      "source": "video_20260429_114829 40.5-43.9 hopping by the grass edge, teal"
+    },
+    {
+      "id": "b08",
+      "file": "b08_step.mp4",
+      "start": 23.0,
+      "duration": 4.2,
+      "volume": 0.3,
+      "source": "lv_0_20251209143405 43.2-47.4 stepping, white/purple"
+    },
+    {
+      "id": "b09",
+      "file": "b09_smoke.mp4",
+      "start": 27.2,
+      "duration": 3.35,
+      "volume": 0.08,
+      "source": "lv_0_20251221130556 77.55-80.9 smoke through mesh, teal"
+    },
+    {
+      "id": "b10",
+      "file": "b10_cta.mp4",
+      "start": 30.55,
+      "duration": 4.97,
+      "volume": 0.3,
+      "source": "lv_0_20251221233711 67.43-72.4 pair on mat (CTA)"
+    }
+  ],
+  "captions": [
+    {
+      "start": 0,
+      "end": 0.993,
+      "text": "Nak kasut selesa",
+      "hidden": true
+    },
+    {
+      "start": 0.643,
+      "end": 1.774,
+      "text": "untuk pergi travel,",
+      "hidden": true
+    },
+    {
+      "start": 1.424,
+      "end": 2.555,
+      "text": "korang jangan pakai",
+      "hidden": true
+    },
+    {
+      "start": 2.205,
+      "end": 3.199,
+      "text": "kasut yang tapak",
+      "hidden": true
+    },
+    {
+      "start": 2.849,
+      "end": 3.7,
+      "text": "dia keras tau.",
+      "hidden": true
+    },
+    {
+      "start": 3.76,
+      "end": 4.285,
+      "text": "Sebab bila",
+      "hidden": false
+    },
+    {
+      "start": 4.285,
+      "end": 5.336,
+      "text": "pergi travel,",
+      "hidden": false
+    },
+    {
+      "start": 4.986,
+      "end": 6.503,
+      "text": "purata korang berjalan",
+      "hidden": true
+    },
+    {
+      "start": 6.153,
+      "end": 7.62,
+      "text": "10,000 step sehari kan.",
+      "hidden": true
+    },
+    {
+      "start": 7.66,
+      "end": 8.162,
+      "text": "Kalau salah",
+      "hidden": false
+    },
+    {
+      "start": 8.162,
+      "end": 8.714,
+      "text": "pakai kasut,",
+      "hidden": false
+    },
+    {
+      "start": 8.714,
+      "end": 9.468,
+      "text": "tumit cepat sakit",
+      "hidden": false
+    },
+    {
+      "start": 9.468,
+      "end": 10.32,
+      "text": "macam ni tau.",
+      "hidden": false
+    },
+    {
+      "start": 10.34,
+      "end": 11.3,
+      "text": "Memang pedih gila.",
+      "hidden": false
+    },
+    {
+      "start": 11.34,
+      "end": 11.952,
+      "text": "Sebab tu korang",
+      "hidden": false
+    },
+    {
+      "start": 11.952,
+      "end": 12.725,
+      "text": "kena pilih",
+      "hidden": false
+    },
+    {
+      "start": 12.375,
+      "end": 13.29,
+      "text": "kasut yang ada",
+      "hidden": true
+    },
+    {
+      "start": 12.94,
+      "end": 13.855,
+      "text": "foam tebal dan",
+      "hidden": true
+    },
+    {
+      "start": 13.505,
+      "end": 14.84,
+      "text": "serap hentakan macam ni.",
+      "hidden": true
+    },
+    {
+      "start": 14.9,
+      "end": 15.41,
+      "text": "Nak berjalan",
+      "hidden": false
+    },
+    {
+      "start": 15.41,
+      "end": 15.92,
+      "text": "lama pun, tak",
+      "hidden": false
+    },
+    {
+      "start": 15.92,
+      "end": 16.663,
+      "text": "pedih tumit korang",
+      "hidden": false
+    },
+    {
+      "start": 16.663,
+      "end": 17.43,
+      "text": "nanti tau.",
+      "hidden": false
+    },
+    {
+      "start": 17.44,
+      "end": 18.208,
+      "text": "Kasut ni pun",
+      "hidden": true
+    },
+    {
+      "start": 17.858,
+      "end": 18.834,
+      "text": "dia datang dengan",
+      "hidden": true
+    },
+    {
+      "start": 18.484,
+      "end": 19.62,
+      "text": "plate flexible sekali.",
+      "hidden": true
+    },
+    {
+      "start": 19.76,
+      "end": 20.453,
+      "text": "So langkah korang",
+      "hidden": false
+    },
+    {
+      "start": 20.453,
+      "end": 21.192,
+      "text": "jadi lebih stabil,",
+      "hidden": false
+    },
+    {
+      "start": 21.192,
+      "end": 21.839,
+      "text": "especially bila",
+      "hidden": false
+    },
+    {
+      "start": 21.839,
+      "end": 22.486,
+      "text": "pijak permukaan",
+      "hidden": false
+    },
+    {
+      "start": 22.486,
+      "end": 23.04,
+      "text": "yang tak rata.",
+      "hidden": false
+    },
+    {
+      "start": 23.04,
+      "end": 23.694,
+      "text": "Dan yang paling",
+      "hidden": false
+    },
+    {
+      "start": 23.694,
+      "end": 24.097,
+      "text": "best kan,",
+      "hidden": false
+    },
+    {
+      "start": 24.097,
+      "end": 24.801,
+      "text": "korang berjalan",
+      "hidden": false
+    },
+    {
+      "start": 24.801,
+      "end": 25.405,
+      "text": "daripada pagi",
+      "hidden": false
+    },
+    {
+      "start": 25.405,
+      "end": 26.059,
+      "text": "sampai ke malam",
+      "hidden": false
+    },
+    {
+      "start": 26.059,
+      "end": 26.869,
+      "text": "pun, memang",
+      "hidden": false
+    },
+    {
+      "start": 26.869,
+      "end": 27.836,
+      "text": "selesa sangat",
+      "hidden": false
+    },
+    {
+      "start": 27.486,
+      "end": 28.453,
+      "text": "sebab kain dia",
+      "hidden": true
+    },
+    {
+      "start": 28.103,
+      "end": 29.34,
+      "text": "jenis breathable tau.",
+      "hidden": true
+    },
+    {
+      "start": 29.34,
+      "end": 29.799,
+      "text": "Langsung tak",
+      "hidden": false
+    },
+    {
+      "start": 29.799,
+      "end": 30.65,
+      "text": "rasa berkuap.",
+      "hidden": false
+    },
+    {
+      "start": 30.64,
+      "end": 31.53,
+      "text": "Harga pun tengah",
+      "hidden": true
+    },
+    {
+      "start": 31.18,
+      "end": 32.02,
+      "text": "murah sekarang.",
+      "hidden": true
+    },
+    {
+      "start": 32.1,
+      "end": 32.561,
+      "text": "So sebelum",
+      "hidden": false
+    },
+    {
+      "start": 32.561,
+      "end": 33.679,
+      "text": "korang terlepas,",
+      "hidden": false
+    },
+    {
+      "start": 33.329,
+      "end": 34.498,
+      "text": "korang pilih warna",
+      "hidden": true
+    },
+    {
+      "start": 34.148,
+      "end": 35.113,
+      "text": "dan saiz kat beg",
+      "hidden": true
+    },
+    {
+      "start": 34.763,
+      "end": 35.52,
+      "text": "kuning bawah ni.",
+      "hidden": true
+    }
+  ],
+  "sfx": [
+    {
+      "time": 0.02,
+      "name": "impact",
+      "gain": 0.9
+    },
+    {
+      "time": 0.3,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 1.75,
+      "name": "zap",
+      "gain": 0.7
+    },
+    {
+      "time": 3.65,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 5.0,
+      "name": "pop",
+      "gain": 0.6
+    },
+    {
+      "time": 7.05,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 7.55,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 10.55,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 11.15,
+      "name": "zap",
+      "gain": 0.6
+    },
+    {
+      "time": 11.4,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 14.65,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 17.25,
+      "name": "zap",
+      "gain": 0.6
+    },
+    {
+      "time": 17.45,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 19.55,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 22.95,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 25.2,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 25.8,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 27.15,
+      "name": "zap",
+      "gain": 0.6
+    },
+    {
+      "time": 27.55,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 29.05,
+      "name": "riser",
+      "gain": 0.6
+    },
+    {
+      "time": 30.52,
+      "name": "impact",
+      "gain": 0.8
+    },
+    {
+      "time": 31.2,
+      "name": "cha_ching",
+      "gain": 0.8
+    },
+    {
+      "time": 33.35,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 33.85,
+      "name": "pop",
+      "gain": 0.8
+    },
+    {
+      "time": 34.5,
+      "name": "zap",
+      "gain": 0.5
+    }
+  ]
+}
