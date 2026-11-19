@@ -37,3 +37,30 @@ Semua masa, teks dan SFX dijana dari satu fail: `tools/build.py` → `index.html
 1. `hyperframes check` lulus (tiada amaran safe-zone/overlap/overflow).
 2. Snapshot setiap babak + frame akhir setiap blok grafik (terutama CTA) — semak pada fail render sebenar.
 3. VO selari dengan asal (jika ada); bunyi footage disahkan −10.5 dB (= 30%) dengan `volumedetect`.
+
+---
+
+## Kemas kini format (diluluskan pada video VO: video2, video3, video4)
+
+Projek rujukan terkini: `video4/` (salin `tools/build.py` sebagai titik mula).
+
+**Audio**
+- VO asal sebagai `<audio>` berasingan dari 0.000s, volume 100%, tiada potongan. Sahkan pada render: lag 0.00 ms & gain ≈ 1.00.
+- Bunyi footage 30%. Kecualian: klip ujian asap (bunyi semburan) 8%; footage yang ada **orang bercakap** atau muzik → dimatikan (`muted`).
+
+**Transkrip & caption**
+- Whisper `large-v3` (ms), kemudian betulkan ejaan secara manual (cth. Steapex Wind Spirit, hentakan, brisk walk, tumit, beg kuning).
+- Caption ikut masa sebenar setiap perkataan VO; chunk 2–3 perkataan, setiap satu ≥0.4s di skrin.
+
+**Visual**
+- Setiap shot gaya hidup mesti **nampak kasut** (rakaman potret 4K berputar: guna frame penuh, jangan crop landskap).
+- Variasi warna kasut digalakkan (bukan teal sahaja).
+- Overlay diletakkan tepat pada subjek (semak dengan snapshot pada masa sebenar).
+
+**CTA**
+- "HARGA TENGAH MURAH!" + kad "PILIH WARNA & SAIZ" dengan **foto sebenar ketiga-tiga warna**:
+  **Emerald Green · Violet · Black** + "kat beg kuning 🛍 bawah ni" + ikon beg & anak panah ke bawah.
+- Kad CTA kekal ≥2s sebelum video tamat.
+
+**Render**
+- `hyperframes render --fps 60 --quality delivery --video-bitrate 14200k` (≈70 MB untuk ~38s).
