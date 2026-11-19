@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Anton"; src: url("assets/fonts/Anton-latin.woff2") format("woff2"); font-weight: 400; font-display: block; }
+      @font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-latin.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      :root {
+        --ground: #000;
+        --ink: #ffffff;
+        --yellow: #ffe100;
+        --neon: #39ff14;
+        --teal: #19d6c6;
+        --font-display: "Anton", sans-serif;
+        --font-label: "Montserrat", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      .clip { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+      video.shot { object-fit: cover; transform-origin: 50% 50%; }
+      .flash { background: #fff; opacity: 0; }
+
+      /* shared text treatments */
+      .display { font-family: var(--font-display); text-transform: uppercase; line-height: 0.95; color: #fff;
+                 -webkit-text-stroke: 8px #000; paint-order: stroke fill; }
+      .label { font-family: var(--font-label); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
+      .shade-top { position: absolute; left: 0; right: 0; top: 0; height: 900px;
+                   background: linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 55%, rgba(0,0,0,0) 100%); }
+      .shade-bot { position: absolute; left: 0; right: 0; bottom: 0; height: 760px;
+                   background: linear-gradient(0deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 100%); }
+
+      /* HOOK */
+      #hook .brand { position: absolute; top: 300px; left: 0; right: 0; text-align: center; }
+      #hook .brand span { display: inline-block; background: rgba(0,0,0,.55); color: #fff; padding: 12px 26px; border-radius: 999px;
+                          font-size: 29px; border: 3px solid var(--teal); }
+      #hook .row { position: absolute; top: 440px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 25px; }
+      #hook .num { font-size: 308px; color: var(--neon); line-height: 0.82; -webkit-text-stroke: 11px #000; paint-order: stroke fill;
+                   text-shadow: 0 0 40px rgba(57,255,20,.55); position: relative; }
+      #hook .ring { position: absolute; left: 50%; top: 50%; width: 420px; height: 420px; margin: -210px 0 0 -210px;
+                    border: 10px solid var(--neon); border-radius: 50%; opacity: 0; }
+      #hook .stack { display: flex; flex-direction: column; gap: 6px; }
+      #hook .l { font-size: 91px; overflow: hidden; }
+      #hook .l > span { display: inline-block; }
+      #hook .padu { color: var(--yellow); font-size: 133px; position: relative; }
+      #hook .uline { position: absolute; left: 0; right: 0; bottom: -6px; height: 16px; background: var(--neon);
+                     transform-origin: 0 50%; transform: scaleX(0); border: 3px solid #000; }
+
+      /* FEATURE TITLE */
+      .feat .box { position: absolute; top: 330px; left: 120px; right: 120px; }
+      .feat .chip { display: inline-flex; align-items: center; gap: 14px; background: var(--neon); color: #000;
+                    padding: 12px 24px; border-radius: 14px; font-size: 28px; border: 4px solid #000; }
+      .feat .chip b { background: #000; color: var(--neon); border-radius: 8px; padding: 2px 12px; }
+      .feat .title { font-size: 98px; margin-top: 22px; overflow: hidden; padding-bottom: 8px; }
+      .feat .title > span { display: inline-block; }
+      .feat .sub { font-size: 50px; color: var(--yellow); margin-top: 6px; }
+      .feat .dots { position: absolute; top: 300px; left: 120px; display: flex; gap: 12px; }
+      .feat .dots i { width: 70px; height: 10px; border-radius: 6px; background: rgba(255,255,255,.35); display: block; }
+      .feat .dots i.on { background: var(--neon); }
+
+      /* BALL TEST TAG */
+      #balltag .tag { position: absolute; left: 120px; top: 960px; background: #000; color: var(--yellow);
+                      font-size: 29px; padding: 12px 22px; border-radius: 12px; border: 3px solid var(--yellow); }
+      #balltag .chev { position: absolute; left: 640px; top: 760px; display: flex; flex-direction: column; align-items: center; }
+      #balltag .chev i { width: 64px; height: 64px; border-right: 14px solid var(--neon); border-bottom: 14px solid var(--neon);
+                         transform: rotate(45deg); margin-top: -22px; display: block; filter: drop-shadow(0 0 3px #000); }
+
+      /* 240g BADGE */
+      #weight .badge { position: absolute; left: 120px; top: 880px; width: 300px; height: 300px; border-radius: 50%;
+                       background: var(--yellow); border: 8px solid #000; display: flex; flex-direction: column;
+                       align-items: center; justify-content: center; box-shadow: 0 16px 40px rgba(0,0,0,.45); }
+      #weight .badge .v { font-family: var(--font-display); font-size: 105px; color: #000; line-height: 0.9; }
+      #weight .badge .v small { font-size: 56px; }
+      #weight .badge .k { font-size: 28px; color: #000; margin-top: 8px; }
+
+      /* DISTANCE TRACKER */
+      #track .card { position: absolute; left: 120px; width: 660px; top: 760px; background: rgba(0,0,0,.72);
+                     border: 4px solid var(--neon); border-radius: 26px; padding: 26px 34px; }
+      #track .top { display: flex; justify-content: space-between; align-items: baseline; }
+      #track .lbl { color: #fff; font-size: 29px; }
+      #track .val { font-family: var(--font-display); color: var(--neon); font-size: 105px; line-height: 1; }
+      #track .val small { font-size: 56px; color: #fff; margin-left: 8px; }
+      #track .bar { height: 22px; background: rgba(255,255,255,.18); border-radius: 12px; overflow: hidden; margin-top: 16px; }
+      #track .bar i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--teal), var(--neon));
+                      transform-origin: 0 50%; transform: scaleX(0); }
+      #track .note { color: var(--yellow); font-size: 29px; margin-top: 14px; }
+
+      /* CTA */
+      #cta .box { position: absolute; top: 300px; left: 120px; right: 120px; text-align: center; }
+      #cta .chip { display: inline-block; background: var(--yellow); color: #000; padding: 12px 28px; border-radius: 999px;
+                   font-size: 31px; border: 4px solid #000; }
+      #cta .h { font-size: 105px; margin-top: 20px; }
+      #cta .h .y { color: var(--neon); }
+      #cta .subp { display: inline-block; margin-top: 22px; background: rgba(0,0,0,.7); color: #fff; font-family: var(--font-label);
+                   font-weight: 600; font-size: 34px; padding: 14px 28px; border-radius: 18px; }
+      #ctabtn .btn { position: absolute; left: 450px; top: 1020px; white-space: nowrap;
+                     background: var(--neon); color: #000; border: 6px solid #000; border-radius: 999px; padding: 22px 54px;
+                     font-size: 45px; -webkit-text-stroke: 0; box-shadow: 0 8px 30px rgba(0,0,0,.5); }
+      #ctabtn .brand { position: absolute; left: 120px; width: 660px; top: 1180px; text-align: center; color: #fff; font-size: 29px;
+                       text-shadow: 0 2px 8px #000; }
+
+      #ctabtn .brand span { background: rgba(0,0,0,.75); padding: 8px 20px; border-radius: 999px; }
+      /* CAPTIONS: Anton 60px, uppercase, black stroke, centre-bottom */
+      .cap .capline { position: absolute; left: 120px; width: 840px; top: 1140px; display: flex; justify-content: center;
+                      flex-wrap: wrap; gap: 0 22px; transform-origin: 50% 50%; }
+      .cap .w { font-family: var(--font-display); font-size: 60px; line-height: 1.1; text-transform: uppercase; color: #fff;
+                -webkit-text-stroke: 10px #000; paint-order: stroke fill; display: inline-block; letter-spacing: 0.02em;
+                text-shadow: 0 4px 10px rgba(0,0,0,.5); }
+      .cap .w.kw { color: var(--neon); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="33.3" data-fps="60" data-width="1080" data-height="1920">
+      <!-- FOOTAGE (10 clips, original sound 30%) -->
+      <video id="c01" class="clip shot" src="assets/clips/c01_hook.mp4" data-start="0.0" data-duration="4.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="0" playsinline></video>
+      <video id="c02" class="clip shot" src="assets/clips/c02_foam.mp4" data-start="4.0" data-duration="3.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="1" playsinline></video>
+      <video id="c03" class="clip shot" src="assets/clips/c03_ball.mp4" data-start="7.0" data-duration="4.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="2" playsinline></video>
+      <video id="c04" class="clip shot" src="assets/clips/c04_flex.mp4" data-start="11.0" data-duration="3.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="3" playsinline></video>
+      <video id="c05" class="clip shot" src="assets/clips/c05_jump.mp4" data-start="14.0" data-duration="3.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="4" playsinline></video>
+      <video id="c06" class="clip shot" src="assets/clips/c06_scale.mp4" data-start="17.0" data-duration="3.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="5" playsinline></video>
+      <video id="c07" class="clip shot" src="assets/clips/c07_smoke.mp4" data-start="20.0" data-duration="3.5" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="6" playsinline></video>
+      <video id="c08" class="clip shot" src="assets/clips/c08_run.mp4" data-start="23.5" data-duration="3.5" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="7" playsinline></video>
+      <video id="c09" class="clip shot" src="assets/clips/c09_bag.mp4" data-start="27.0" data-duration="3.3" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="8" playsinline></video>
+      <video id="c10" class="clip shot" src="assets/clips/c10_pair.mp4" data-start="30.3" data-duration="3.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="9" playsinline></video>
+
+      <!-- HOOK 0-4s -->
+      <div class="clip" id="hook" data-start="0" data-duration="4" data-track-index="11">
+        <div class="shade-top"></div>
+        <div class="brand"><span class="label">Steapex &middot; Wind Spirit</span></div>
+        <div class="row">
+          <div class="display num" id="h3">3<div class="ring" id="hring"></div></div>
+          <div class="stack">
+            <div class="display l"><span id="hl1">Ciri Kasut</span></div>
+            <div class="display l"><span id="hl2">Jogging</span></div>
+            <div class="display l padu"><span id="hl3">Padu</span><div class="uline" id="hul" data-layout-allow-overflow></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURE 1: 4-11s -->
+      <div class="clip feat" id="f1" data-start="4" data-duration="7" data-track-index="12">
+        <div class="shade-top"></div>
+        <div class="dots"><i class="on"></i><i></i><i></i></div>
+        <div class="box">
+          <div class="chip label" id="f1chip">Ciri <b>#1</b></div>
+          <div class="display title"><span id="f1t">Foam Tebal</span></div>
+          <div class="display sub" id="f1s">+ Shock Absorption</div>
+        </div>
+      </div>
+      <div class="clip" id="balltag" data-start="7" data-duration="4" data-track-index="13">
+        <div class="tag label" id="btag">Ujian bola jatuh</div>
+        <div class="chev" id="bchev"><i></i><i></i><i></i></div>
+      </div>
+
+      <!-- FEATURE 2: 11-20s -->
+      <div class="clip feat" id="f2" data-start="11" data-duration="9" data-track-index="12">
+        <div class="shade-top"></div>
+        <div class="dots"><i class="on"></i><i class="on"></i><i></i></div>
+        <div class="box">
+          <div class="chip label" id="f2chip">Ciri <b>#2</b></div>
+          <div class="display title"><span id="f2t">Tapak Responsive</span></div>
+        </div>
+      </div>
+      <div class="clip" id="weight" data-start="17" data-duration="3" data-track-index="13">
+        <div class="badge" id="wbadge"><div class="v">240<small>g</small></div><div class="k label">Ringan</div></div>
+      </div>
+
+      <!-- FEATURE 3: 20-27s -->
+      <div class="clip feat" id="f3" data-start="20" data-duration="7" data-track-index="12">
+        <div class="shade-top"></div>
+        <div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        <div class="box">
+          <div class="chip label" id="f3chip">Ciri <b>#3</b></div>
+          <div class="display title"><span id="f3t">Kain Breathable</span></div>
+        </div>
+      </div>
+      <div class="clip" id="track" data-start="23.5" data-duration="3.5" data-track-index="13">
+        <div class="card" id="tcard">
+          <div class="top"><div class="lbl label">Jogging</div><div class="val"><span id="tval">0.0</span><small>KM+</small></div></div>
+          <div class="bar"><i id="tbar"></i></div>
+          <div class="note label">Walaupun lebih 10KM</div>
+        </div>
+      </div>
+
+      <!-- CTA 27-33.3s -->
+      <div class="clip" id="cta" data-start="27" data-duration="6.3" data-track-index="14">
+        <div class="shade-top"></div>
+        <div class="box">
+          <div class="chip label" id="cchip">Bonus percuma</div>
+          <div class="display h" id="ch"><span id="ch1">Dapat beg kasut</span><br /><span class="y" id="ch2">sekali!</span></div>
+          <div class="subp" id="csub">Kasut kotor boleh simpan terus</div>
+        </div>
+      </div>
+      <div class="clip" id="ctabtn" data-start="30.3" data-duration="3" data-track-index="15">
+        <div class="shade-bot"></div>
+        <div class="btn display" id="cbtn">Beli sekarang &darr;</div>
+        <div class="brand label" id="cbrand"><span>Steapex &middot; Wind Spirit</span></div>
+      </div>
+
+      <!-- CAPTIONS -->
+      <div class="clip cap" id="cap0" data-start="7.35" data-duration="1.2" data-track-index="20"><div class="capline"><span class="w" id="cap0w0">SERAP</span><span class="w kw" id="cap0w1">IMPAK</span><span class="w" id="cap0w2">HENTAK</span></div></div>
+      <div class="clip cap" id="cap1" data-start="8.6" data-duration="0.8" data-track-index="20"><div class="capline"><span class="w" id="cap1w0">DENGAN</span><span class="w" id="cap1w1">BAIK</span></div></div>
+      <div class="clip cap" id="cap2" data-start="9.5" data-duration="0.75" data-track-index="20"><div class="capline"><span class="w" id="cap2w0">WALAUPUN</span><span class="w" id="cap2w1">BADAN</span></div></div>
+      <div class="clip cap" id="cap3" data-start="10.25" data-duration="0.7" data-track-index="20"><div class="capline"><span class="w kw" id="cap3w0">PLUS</span><span class="w kw" id="cap3w1">SIZE</span></div></div>
+      <div class="clip cap" id="cap4" data-start="14.3" data-duration="1.1" data-track-index="20"><div class="capline"><span class="w" id="cap4w0">RASA</span><span class="w kw" id="cap4w1">BOUNCY</span></div></div>
+      <div class="clip cap" id="cap5" data-start="15.5" data-duration="1.4" data-track-index="20"><div class="capline"><span class="w" id="cap5w0">BILA</span><span class="w" id="cap5w1">JOGGING</span></div></div>
+      <div class="clip cap" id="cap6" data-start="23.7" data-duration="1.25" data-track-index="20"><div class="capline"><span class="w kw" id="cap6w0">TAK</span><span class="w kw" id="cap6w1">PANAS</span></div></div>
+
+      <!-- WHITE FLASH ON EVERY CUT -->
+      <div class="clip flash" id="fl0" data-start="4.0" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl1" data-start="7.0" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl2" data-start="11.0" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl3" data-start="14.0" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl4" data-start="17.0" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl5" data-start="20.0" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl6" data-start="23.5" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl7" data-start="27.0" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl8" data-start="30.3" data-duration="0.3" data-track-index="30"></div>
+
+      <!-- SFX (synthesised, low) -->
+      <audio id="sfx0" src="assets/sfx/impact.wav" data-start="0.02" data-duration="0.9" data-volume="0.32"></audio>
+      <audio id="sfx1" src="assets/sfx/whoosh.wav" data-start="0.32" data-duration="0.45" data-volume="0.256"></audio>
+      <audio id="sfx2" src="assets/sfx/pop.wav" data-start="0.95" data-duration="0.12" data-volume="0.288"></audio>
+      <audio id="sfx3" src="assets/sfx/whoosh.wav" data-start="3.8" data-duration="0.45" data-volume="0.288"></audio>
+      <audio id="sfx4" src="assets/sfx/ding.wav" data-start="4.15" data-duration="1.0" data-volume="0.224"></audio>
+      <audio id="sfx5" src="assets/sfx/zap.wav" data-start="6.95" data-duration="0.25" data-volume="0.256"></audio>
+      <audio id="sfx6" src="assets/sfx/pop.wav" data-start="7.4" data-duration="0.12" data-volume="0.192"></audio>
+      <audio id="sfx7" src="assets/sfx/whoosh.wav" data-start="10.8" data-duration="0.45" data-volume="0.288"></audio>
+      <audio id="sfx8" src="assets/sfx/ding.wav" data-start="11.15" data-duration="1.0" data-volume="0.224"></audio>
+      <audio id="sfx9" src="assets/sfx/whoosh.wav" data-start="13.85" data-duration="0.45" data-volume="0.256"></audio>
+      <audio id="sfx10" src="assets/sfx/pop.wav" data-start="14.35" data-duration="0.12" data-volume="0.192"></audio>
+      <audio id="sfx11" src="assets/sfx/zap.wav" data-start="16.95" data-duration="0.25" data-volume="0.256"></audio>
+      <audio id="sfx12" src="assets/sfx/pop.wav" data-start="18.7" data-duration="0.12" data-volume="0.32"></audio>
+      <audio id="sfx13" src="assets/sfx/whoosh.wav" data-start="19.8" data-duration="0.45" data-volume="0.288"></audio>
+      <audio id="sfx14" src="assets/sfx/ding.wav" data-start="20.15" data-duration="1.0" data-volume="0.224"></audio>
+      <audio id="sfx15" src="assets/sfx/zap.wav" data-start="23.45" data-duration="0.25" data-volume="0.256"></audio>
+      <audio id="sfx16" src="assets/sfx/pop.wav" data-start="23.75" data-duration="0.12" data-volume="0.192"></audio>
+      <audio id="sfx17" src="assets/sfx/riser.wav" data-start="25.5" data-duration="1.5" data-volume="0.256"></audio>
+      <audio id="sfx18" src="assets/sfx/impact.wav" data-start="27.0" data-duration="0.9" data-volume="0.288"></audio>
+      <audio id="sfx19" src="assets/sfx/cha_ching.wav" data-start="27.35" data-duration="1.1" data-volume="0.288"></audio>
+      <audio id="sfx20" src="assets/sfx/whoosh.wav" data-start="30.25" data-duration="0.45" data-volume="0.256"></audio>
+      <audio id="sfx21" src="assets/sfx/pop.wav" data-start="30.8" data-duration="0.12" data-volume="0.288"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // brief zoom-in on every clip
+      tl.fromTo("#c01",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},0.0);tl.to("#c01",{scale:1.11,duration:3.55,ease:"none"},0.45);
+      tl.fromTo("#c02",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},4.0);tl.to("#c02",{scale:1.11,duration:2.55,ease:"none"},4.45);
+      tl.fromTo("#c03",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},7.0);tl.to("#c03",{scale:1.11,duration:3.55,ease:"none"},7.45);
+      tl.fromTo("#c04",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},11.0);tl.to("#c04",{scale:1.11,duration:2.55,ease:"none"},11.45);
+      tl.fromTo("#c05",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},14.0);tl.to("#c05",{scale:1.11,duration:2.55,ease:"none"},14.45);
+      tl.fromTo("#c06",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},17.0);tl.to("#c06",{scale:1.11,duration:2.55,ease:"none"},17.45);
+      tl.fromTo("#c07",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},20.0);tl.to("#c07",{scale:1.11,duration:3.05,ease:"none"},20.45);
+      tl.fromTo("#c08",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},23.5);tl.to("#c08",{scale:1.11,duration:3.05,ease:"none"},23.95);
+      tl.fromTo("#c09",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},27.0);tl.to("#c09",{scale:1.11,duration:2.85,ease:"none"},27.45);
+      tl.fromTo("#c10",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},30.3);tl.to("#c10",{scale:1.11,duration:2.55,ease:"none"},30.75);
+
+      // white flash at each cut
+      tl.fromTo("#fl0",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},4.0);
+      tl.fromTo("#fl1",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},7.0);
+      tl.fromTo("#fl2",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},11.0);
+      tl.fromTo("#fl3",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},14.0);
+      tl.fromTo("#fl4",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},17.0);
+      tl.fromTo("#fl5",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},20.0);
+      tl.fromTo("#fl6",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},23.5);
+      tl.fromTo("#fl7",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},27.0);
+      tl.fromTo("#fl8",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},30.3);
+
+      // HOOK
+      tl.fromTo("#h3", { scale: 3.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.28, ease: "power4.in" }, 0.0);
+      tl.fromTo("#hring", { scale: 0.6, opacity: 1 }, { scale: 1.9, opacity: 0, duration: 0.6, ease: "power2.out" }, 0.28);
+      tl.fromTo("#hl1", { yPercent: 110 }, { yPercent: 0, duration: 0.3, ease: "power3.out" }, 0.32);
+      tl.fromTo("#hl2", { yPercent: 110 }, { yPercent: 0, duration: 0.3, ease: "power3.out" }, 0.46);
+      tl.fromTo("#hl3", { scale: 0, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.6)" }, 0.95);
+      tl.to("#hul", { scaleX: 1, duration: 0.3, ease: "power2.out" }, 1.15);
+      tl.fromTo("#hook .brand span", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 0.6);
+      tl.to("#h3", { scale: 1.06, duration: 0.15, yoyo: true, repeat: 1 }, 2.2);
+      tl.to("#hook .row", { y: -16, duration: 1.6, ease: "sine.inOut" }, 2.0);
+
+      // FEATURE TITLES
+      [["f1", 4], ["f2", 11], ["f3", 20]].forEach(([id, t]) => {
+        tl.fromTo(`#${id}chip`, { x: -260, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "back.out(1.8)" }, t + 0.05);
+        tl.fromTo(`#${id}t`, { yPercent: 105 }, { yPercent: 0, duration: 0.35, ease: "power3.out" }, t + 0.15);
+        tl.fromTo(`#${id} .dots`, { opacity: 0 }, { opacity: 1, duration: 0.25 }, t);
+      });
+      tl.fromTo("#f1s", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 4.45);
+
+      // BALL TEST
+      tl.fromTo("#btag", { x: -300, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 7.1);
+      gsap.set("#bchev i", { opacity: 0.15 });
+      for (let k = 0; k < 6; k++) {
+        tl.to("#bchev i", { opacity: 1, duration: 0.18, stagger: 0.12 }, 7.2 + k * 0.6);
+        tl.to("#bchev i", { opacity: 0.15, duration: 0.18, stagger: 0.12 }, 7.5 + k * 0.6);
+      }
+
+      // 240g BADGE
+      tl.fromTo("#wbadge", { scale: 0, rotation: -25 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.4)" }, 18.7);
+
+      // DISTANCE TRACKER
+      tl.fromTo("#tcard", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 23.75);
+      const km = { v: 0 };
+      tl.fromTo(km, { v: 0 }, { v: 10, duration: 1.8, ease: "power2.out",
+        onUpdate: () => { document.getElementById("tval").textContent = km.v.toFixed(1); } }, 24.0);
+      tl.fromTo("#tbar", { scaleX: 0 }, { scaleX: 1, duration: 1.8, ease: "power2.out" }, 24.0);
+
+      // CTA
+      tl.fromTo("#cchip", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.5)" }, 27.05);
+      tl.fromTo("#ch1", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 27.2);
+      tl.fromTo("#ch2", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in" }, 27.4);
+      tl.fromTo("#csub", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 27.8);
+      gsap.set("#cbtn", { xPercent: -50 });
+      tl.fromTo("#cbtn", { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(2.2)" }, 30.75);
+      tl.fromTo("#cbrand", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 31.0);
+      tl.to("#cbtn", { scale: 1.07, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }, 31.3);
+
+      // CAPTIONS (active word yellow, keywords neon green)
+      tl.fromTo("#cap0 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},7.35);
+      tl.set("#cap0w0",{color:"var(--yellow)"},7.35);
+      tl.set("#cap0w0",{color:"#fff"},7.75);
+      tl.fromTo("#cap0w1",{scale:1},{scale:1.14,duration:0.08},7.75);
+      tl.to("#cap0w1",{scale:1,duration:0.1},8.11);
+      tl.set("#cap0w2",{color:"var(--yellow)"},8.15);
+      tl.set("#cap0w2",{color:"#fff"},8.55);
+      tl.fromTo("#cap1 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},8.6);
+      tl.set("#cap1w0",{color:"var(--yellow)"},8.6);
+      tl.set("#cap1w0",{color:"#fff"},9.0);
+      tl.set("#cap1w1",{color:"var(--yellow)"},9.0);
+      tl.set("#cap1w1",{color:"#fff"},9.4);
+      tl.fromTo("#cap2 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},9.5);
+      tl.set("#cap2w0",{color:"var(--yellow)"},9.5);
+      tl.set("#cap2w0",{color:"#fff"},9.875);
+      tl.set("#cap2w1",{color:"var(--yellow)"},9.875);
+      tl.set("#cap2w1",{color:"#fff"},10.25);
+      tl.fromTo("#cap3 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},10.25);
+      tl.fromTo("#cap3w0",{scale:1},{scale:1.14,duration:0.08},10.25);
+      tl.to("#cap3w0",{scale:1,duration:0.1},10.565);
+      tl.fromTo("#cap3w1",{scale:1},{scale:1.14,duration:0.08},10.6);
+      tl.to("#cap3w1",{scale:1,duration:0.1},10.915);
+      tl.fromTo("#cap4 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},14.3);
+      tl.set("#cap4w0",{color:"var(--yellow)"},14.3);
+      tl.set("#cap4w0",{color:"#fff"},14.85);
+      tl.fromTo("#cap4w1",{scale:1},{scale:1.14,duration:0.08},14.85);
+      tl.to("#cap4w1",{scale:1,duration:0.1},15.345);
+      tl.fromTo("#cap5 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},15.5);
+      tl.set("#cap5w0",{color:"var(--yellow)"},15.5);
+      tl.set("#cap5w0",{color:"#fff"},16.2);
+      tl.set("#cap5w1",{color:"var(--yellow)"},16.2);
+      tl.set("#cap5w1",{color:"#fff"},16.9);
+      tl.fromTo("#cap6 .capline",{scale:0.82,y:18},{scale:1,y:0,duration:0.14,ease:"back.out(3)"},23.7);
+      tl.fromTo("#cap6w0",{scale:1},{scale:1.14,duration:0.08},23.7);
+      tl.to("#cap6w0",{scale:1,duration:0.1},24.262);
+      tl.fromTo("#cap6w1",{scale:1},{scale:1.14,duration:0.08},24.325);
+      tl.to("#cap6w1",{scale:1,duration:0.1},24.887);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
