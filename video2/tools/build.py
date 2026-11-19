@@ -11,6 +11,8 @@ FPS = 60
 FOOTAGE_VOL = 0.30   # original footage sound at 30% (no source clip contains music)
 # per-clip overrides: the smoke-spray hiss masked the VO, so those two clips sit lower
 CLIP_VOL = {"v07": 0.08, "v08": 0.08}
+# zoom anchor per clip (default centre); v09 anchors low so the shoes stay in frame
+CLIP_ORIGIN = {"v09": "50% 82%"}
 SFX_VOL = 0.30       # SFX kept well under the VO
 VO_FILE = "assets/audio/vo.wav"
 VO_LEN = 38.613
@@ -25,7 +27,7 @@ CLIPS = [
     ("v06", "v06_run.mp4", 17.45, 2.65, "video_20260429_114602 4.0-6.65 jogging on track"),
     ("v07", "v07_smoke.mp4", 20.10, 4.30, "lv_0_20251221130556 77.55-81.85 smoke through mesh"),
     ("v08", "v08_smokecu.mp4", 24.40, 2.70, "lv_0_20251221130556 82.2-84.9 smoke close-up"),
-    ("v09", "v09_knees.mp4", 27.10, 6.55, "video_20260118_102336 2.0-8.55 high knees in park (4K crop)"),
+    ("v09", "v09_knees.mp4", 27.10, 6.55, "video_20260118_102336 2.0-8.55 high knees in park (portrait 4K, full frame)"),
     ("v10", "v10_cta.mp4", 33.65, 4.97, "lv_0_20251221233711 67.43-72.4 pair on mat (CTA)"),
 ]
 TOTAL = round(CLIPS[-1][2] + CLIPS[-1][3], 3)
@@ -126,7 +128,8 @@ def build():
                     f'data-media-start="0" muted playsinline data-track-index="0"></video>\n      '
                     f'<video id="v01" class="clip sq" src="assets/clips/{f}" data-start="{s}" data-duration="{d}" '
                     f'data-media-start="0" data-volume="{FOOTAGE_VOL}" data-has-audio="true" data-track-index="1" playsinline></video>')
-        return (f'<video id="{cid}" class="clip shot" src="assets/clips/{f}" data-start="{s}" data-duration="{d}" '
+        org = f' style="transform-origin:{CLIP_ORIGIN[cid]}"' if cid in CLIP_ORIGIN else ""
+        return (f'<video id="{cid}" class="clip shot"{org} src="assets/clips/{f}" data-start="{s}" data-duration="{d}" '
                 f'data-media-start="0" data-volume="{CLIP_VOL.get(cid, FOOTAGE_VOL)}" data-has-audio="true" data-track-index="{i}" playsinline></video>')
     videos = "\n      ".join(video(i, *c[:4]) for i, c in enumerate(CLIPS))
     flashes = "\n      ".join(f'<div class="clip flash" id="fl{i}" data-start="{t}" data-duration="0.3" data-track-index="30"></div>'
