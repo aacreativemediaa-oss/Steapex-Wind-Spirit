@@ -242,10 +242,10 @@ TEMPLATE = r"""<!doctype html>
       #buy .card { position: absolute; left: 120px; width: 660px; top: 640px; background: rgba(0,0,0,.8);
                    border: 5px solid var(--neon); border-radius: 28px; padding: 22px 30px; text-align: center; }
       #buy .pick { font-size: {{96}}; color: var(--neon); }
-      #buy .sw { display: flex; justify-content: center; gap: 14px; margin: 14px 0 12px; }
+      #buy .sw { display: flex; justify-content: center; align-items: flex-start; gap: 14px; margin: 14px 0 12px; }
       #buy .sw .tile { width: 188px; display: flex; flex-direction: column; align-items: center; gap: 6px; transform-origin: 50% 60%; }
       #buy .sw img { width: 188px; height: 235px; object-fit: cover; border-radius: 16px; border: 4px solid #fff; display: block; }
-      #buy .sw .nm { font-size: {{40}}; color: #fff; }
+      #buy .sw .nm { font-size: {{40}}; color: #fff; text-align: center; line-height: 1.1; letter-spacing: 0.04em; }
       #buy .line { font-family: var(--font-label); font-weight: 800; color: #fff; font-size: {{46}}; line-height: 1.3;
                    display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
       #buy .line .bagsvg { width: 54px; height: 54px; }
@@ -355,9 +355,9 @@ TEMPLATE = r"""<!doctype html>
         <div class="card" id="bcard">
           <div class="display pick">Pilih warna &amp; saiz</div>
           <div class="sw" id="bsw">
-            <div class="tile" id="sw1"><img src="assets/img/shoe_teal.jpg" alt="" /><div class="nm label">Hijau</div></div>
-            <div class="tile" id="sw2"><img src="assets/img/shoe_white.jpg" alt="" /><div class="nm label">Putih</div></div>
-            <div class="tile" id="sw3"><img src="assets/img/shoe_black.jpg" alt="" /><div class="nm label">Hitam</div></div>
+            <div class="tile" id="sw1"><img src="assets/img/shoe_teal.jpg" alt="" /><div class="nm label">Emerald<br />Green</div></div>
+            <div class="tile" id="sw2"><img src="assets/img/shoe_white.jpg" alt="" /><div class="nm label">Violet</div></div>
+            <div class="tile" id="sw3"><img src="assets/img/shoe_black.jpg" alt="" /><div class="nm label">Black</div></div>
           </div>
           <div class="line">kat <em>beg kuning</em> __BAG__ bawah ni</div>
         </div>
