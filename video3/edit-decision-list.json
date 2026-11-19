@@ -1,0 +1,563 @@
+{
+  "fps": 60,
+  "duration": 41.27,
+  "voiceover": {
+    "file": "assets/audio/vo.wav",
+    "start": 0,
+    "volume": 1.0,
+    "length": 40.773
+  },
+  "footage_volume": 0.3,
+  "sfx_volume": 0.3,
+  "clips": [
+    {
+      "id": "v01",
+      "file": "v01_ball.mp4",
+      "start": 0.0,
+      "duration": 4.75,
+      "volume": 0.3,
+      "source": "lv_7535...181155 0-4.75 ball-drop split-screen (intro, one shot, natural speed)"
+    },
+    {
+      "id": "v02",
+      "file": "v02_flex.mp4",
+      "start": 4.75,
+      "duration": 2.85,
+      "volume": 0.3,
+      "source": "lv_0_20251221130556 40.5-43.35 sole flex"
+    },
+    {
+      "id": "v03",
+      "file": "v03_hop.mp4",
+      "start": 7.6,
+      "duration": 7.2,
+      "volume": 0.3,
+      "source": "lv_0_20251221233711 41.4-48.6 feet hopping"
+    },
+    {
+      "id": "v04",
+      "file": "v04_tread.mp4",
+      "start": 14.8,
+      "duration": 2.05,
+      "volume": 0.3,
+      "source": "video_20260117_220257 0.5-2.55 treadmill feet"
+    },
+    {
+      "id": "v05",
+      "file": "v05_foam.mp4",
+      "start": 16.85,
+      "duration": 2.25,
+      "volume": 0.3,
+      "source": "lv_0_20251221130556 35.62-37.87 squeezing midsole foam"
+    },
+    {
+      "id": "v06",
+      "file": "v06_run.mp4",
+      "start": 19.1,
+      "duration": 3.1,
+      "volume": 0.3,
+      "source": "video_20260429_114602 4.0-7.1 jogging on track"
+    },
+    {
+      "id": "v07",
+      "file": "v07_smoke.mp4",
+      "start": 22.2,
+      "duration": 4.3,
+      "volume": 0.08,
+      "source": "lv_0_20251221130556 77.55-81.85 smoke through mesh"
+    },
+    {
+      "id": "v08",
+      "file": "v08_smokecu.mp4",
+      "start": 26.5,
+      "duration": 2.7,
+      "volume": 0.08,
+      "source": "lv_0_20251221130556 82.2-84.9 smoke close-up"
+    },
+    {
+      "id": "v09",
+      "file": "v09_knees.mp4",
+      "start": 29.2,
+      "duration": 7.1,
+      "volume": 0.3,
+      "source": "video_20260118_102336 2.0-9.1 high knees in park (portrait 4K, full frame)"
+    },
+    {
+      "id": "v10",
+      "file": "v10_cta.mp4",
+      "start": 36.3,
+      "duration": 4.97,
+      "volume": 0.3,
+      "source": "lv_0_20251221233711 67.43-72.4 pair on mat (CTA)"
+    }
+  ],
+  "captions": [
+    {
+      "start": 0,
+      "end": 0.95,
+      "text": "Korang nampak",
+      "hidden": true
+    },
+    {
+      "start": 0.6,
+      "end": 1.3,
+      "text": "tak beza",
+      "hidden": true
+    },
+    {
+      "start": 0.95,
+      "end": 2.15,
+      "text": "antara dua kasut ni?",
+      "hidden": true
+    },
+    {
+      "start": 2.22,
+      "end": 3.413,
+      "text": "Yang belah kanan ni,",
+      "hidden": true
+    },
+    {
+      "start": 3.063,
+      "end": 4.107,
+      "text": "bola tu melantun",
+      "hidden": true
+    },
+    {
+      "start": 3.757,
+      "end": 4.85,
+      "text": "lebih tinggi kan?",
+      "hidden": true
+    },
+    {
+      "start": 4.84,
+      "end": 6.075,
+      "text": "So itu maksudnya,",
+      "hidden": true
+    },
+    {
+      "start": 5.725,
+      "end": 6.783,
+      "text": "kasut ni lebih",
+      "hidden": true
+    },
+    {
+      "start": 6.433,
+      "end": 7.5,
+      "text": "responsif tau.",
+      "hidden": true
+    },
+    {
+      "start": 7.68,
+      "end": 8.138,
+      "text": "Sebab tu bila",
+      "hidden": false
+    },
+    {
+      "start": 8.138,
+      "end": 8.679,
+      "text": "korang jogging",
+      "hidden": false
+    },
+    {
+      "start": 8.679,
+      "end": 9.52,
+      "text": "pakai kasut ni,",
+      "hidden": false
+    },
+    {
+      "start": 9.66,
+      "end": 10.159,
+      "text": "rasa dia",
+      "hidden": false
+    },
+    {
+      "start": 10.159,
+      "end": 11.014,
+      "text": "lebih bouncy,",
+      "hidden": false
+    },
+    {
+      "start": 11.014,
+      "end": 12.24,
+      "text": "rasa melantun,",
+      "hidden": false
+    },
+    {
+      "start": 12.26,
+      "end": 12.898,
+      "text": "macam ada spring",
+      "hidden": false
+    },
+    {
+      "start": 12.898,
+      "end": 13.7,
+      "text": "kat tapak tu.",
+      "hidden": false
+    },
+    {
+      "start": 13.76,
+      "end": 14.238,
+      "text": "Memang best",
+      "hidden": false
+    },
+    {
+      "start": 14.238,
+      "end": 14.92,
+      "text": "gila tau.",
+      "hidden": false
+    },
+    {
+      "start": 14.98,
+      "end": 15.513,
+      "text": "So untuk korang",
+      "hidden": false
+    },
+    {
+      "start": 15.513,
+      "end": 16.088,
+      "text": "yang besar pula,",
+      "hidden": false
+    },
+    {
+      "start": 16.088,
+      "end": 16.93,
+      "text": "jangan risau.",
+      "hidden": false
+    },
+    {
+      "start": 16.94,
+      "end": 17.834,
+      "text": "Sebab foam dia",
+      "hidden": true
+    },
+    {
+      "start": 17.484,
+      "end": 18.47,
+      "text": "sangat tebal dan",
+      "hidden": true
+    },
+    {
+      "start": 18.12,
+      "end": 19.1,
+      "text": "serap hentakan.",
+      "hidden": true
+    },
+    {
+      "start": 19.2,
+      "end": 19.76,
+      "text": "So tumit korang",
+      "hidden": false
+    },
+    {
+      "start": 19.76,
+      "end": 20.66,
+      "text": "memang tak pedih,",
+      "hidden": false
+    },
+    {
+      "start": 20.74,
+      "end": 21.4,
+      "text": "walaupun jogging",
+      "hidden": false
+    },
+    {
+      "start": 21.4,
+      "end": 22.14,
+      "text": "lebih 10KM.",
+      "hidden": false
+    },
+    {
+      "start": 22.28,
+      "end": 22.819,
+      "text": "Dan yang paling",
+      "hidden": false
+    },
+    {
+      "start": 22.819,
+      "end": 23.5,
+      "text": "syok kan,",
+      "hidden": false
+    },
+    {
+      "start": 23.15,
+      "end": 24.121,
+      "text": "material kain dia",
+      "hidden": true
+    },
+    {
+      "start": 23.771,
+      "end": 24.9,
+      "text": "sangat breathable tau.",
+      "hidden": true
+    },
+    {
+      "start": 24.98,
+      "end": 25.55,
+      "text": "So haba panas",
+      "hidden": false
+    },
+    {
+      "start": 25.55,
+      "end": 26.224,
+      "text": "daripada dalam",
+      "hidden": false
+    },
+    {
+      "start": 26.224,
+      "end": 27.005,
+      "text": "tu, mudah nak",
+      "hidden": false
+    },
+    {
+      "start": 27.005,
+      "end": 27.54,
+      "text": "keluar macam ni.",
+      "hidden": false
+    },
+    {
+      "start": 27.54,
+      "end": 28.259,
+      "text": "Korang nak pakai",
+      "hidden": false
+    },
+    {
+      "start": 28.259,
+      "end": 28.772,
+      "text": "lama pun tak",
+      "hidden": false
+    },
+    {
+      "start": 28.772,
+      "end": 29.79,
+      "text": "rasa panas kan?",
+      "hidden": false
+    },
+    {
+      "start": 29.92,
+      "end": 30.755,
+      "text": "So kalau korang",
+      "hidden": true
+    },
+    {
+      "start": 30.405,
+      "end": 31.39,
+      "text": "nak start bersenam,",
+      "hidden": true
+    },
+    {
+      "start": 31.34,
+      "end": 32.63,
+      "text": "nak brisk walk santai,",
+      "hidden": true
+    },
+    {
+      "start": 32.42,
+      "end": 33.321,
+      "text": "ataupun jogging",
+      "hidden": true
+    },
+    {
+      "start": 32.971,
+      "end": 33.9,
+      "text": "petang-petang tu,",
+      "hidden": true
+    },
+    {
+      "start": 34.16,
+      "end": 34.619,
+      "text": "kasut Steapex",
+      "hidden": false
+    },
+    {
+      "start": 34.619,
+      "end": 35.169,
+      "text": "Wind Spirit ni",
+      "hidden": false
+    },
+    {
+      "start": 35.169,
+      "end": 36.39,
+      "text": "memang sesuai sangat.",
+      "hidden": false
+    },
+    {
+      "start": 36.42,
+      "end": 37.276,
+      "text": "Harga pun tengah",
+      "hidden": true
+    },
+    {
+      "start": 36.926,
+      "end": 37.84,
+      "text": "murah tau sekarang.",
+      "hidden": true
+    },
+    {
+      "start": 37.9,
+      "end": 38.325,
+      "text": "So sebelum",
+      "hidden": false
+    },
+    {
+      "start": 38.325,
+      "end": 39.43,
+      "text": "terlepas promo ni,",
+      "hidden": false
+    },
+    {
+      "start": 39.38,
+      "end": 40.113,
+      "text": "better korang",
+      "hidden": true
+    },
+    {
+      "start": 39.763,
+      "end": 40.528,
+      "text": "check out dekat",
+      "hidden": true
+    },
+    {
+      "start": 40.178,
+      "end": 41.02,
+      "text": "beg kuning bawah ni.",
+      "hidden": true
+    }
+  ],
+  "sfx": [
+    {
+      "time": 0.02,
+      "name": "impact",
+      "gain": 0.9
+    },
+    {
+      "time": 0.3,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 1.45,
+      "name": "pop",
+      "gain": 0.8
+    },
+    {
+      "time": 2.27,
+      "name": "pop",
+      "gain": 0.6
+    },
+    {
+      "time": 3.38,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 4.7,
+      "name": "zap",
+      "gain": 0.7
+    },
+    {
+      "time": 4.88,
+      "name": "pop",
+      "gain": 0.6
+    },
+    {
+      "time": 7.55,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 12.65,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 14.75,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 16.8,
+      "name": "zap",
+      "gain": 0.6
+    },
+    {
+      "time": 16.95,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 19.05,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 19.3,
+      "name": "pop",
+      "gain": 0.6
+    },
+    {
+      "time": 22.15,
+      "name": "zap",
+      "gain": 0.7
+    },
+    {
+      "time": 23.15,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 26.45,
+      "name": "whoosh",
+      "gain": 0.6
+    },
+    {
+      "time": 29.15,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 30.72,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 31.52,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 32.72,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 34.8,
+      "name": "riser",
+      "gain": 0.6
+    },
+    {
+      "time": 36.27,
+      "name": "impact",
+      "gain": 0.8
+    },
+    {
+      "time": 36.95,
+      "name": "cha_ching",
+      "gain": 0.8
+    },
+    {
+      "time": 39.27,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 39.72,
+      "name": "pop",
+      "gain": 0.8
+    },
+    {
+      "time": 40.3,
+      "name": "zap",
+      "gain": 0.5
+    }
+  ]
+}
