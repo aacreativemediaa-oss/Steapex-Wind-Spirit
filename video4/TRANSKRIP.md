@@ -37,7 +37,7 @@ B-roll baharu digunakan: video_20251226_091215 (intro), video_20250529_093604 (k
 | 19.60–23.00 | video_20260429_114829 40.5-43.9 hopping by the grass edge, teal | 30% | CIRI #2 (sambung) |
 | 23.00–27.20 | lv_0_20251209143405 43.2-47.4 stepping, white/purple | 30% | Arka matahari → bulan (pagi sampai malam) |
 | 27.20–30.55 | lv_0_20251221130556 77.55-80.9 smoke through mesh, teal | 8% | CIRI #3 · KAIN BREATHABLE + anak panah haba naik |
-| 30.55–35.52 | lv_0_20251221233711 67.43-72.4 pair on mat (CTA) | 30% | CTA: HARGA TENGAH MURAH! · PILIH WARNA & SAIZ (3 swatch) · kat beg kuning 🛍 bawah ni + ikon beg & anak panah |
+| 30.55–35.52 | lv_0_20251221233711 67.43-72.4 pair on mat (CTA) | 30% | CTA: HARGA TENGAH MURAH! · PILIH WARNA & SAIZ (foto 3 warna: Hijau, Putih, Hitam) · kat beg kuning 🛍 bawah ni + ikon beg & anak panah |
 
 ## 3. Caption yang disembunyikan (grafik sudah tunjuk klausa sama)
 

@@ -499,14 +499,29 @@
       "gain": 0.8
     },
     {
-      "time": 33.35,
+      "time": 33.3,
+      "name": "pop",
+      "gain": 0.6
+    },
+    {
+      "time": 33.42,
       "name": "pop",
       "gain": 0.7
     },
     {
-      "time": 33.85,
+      "time": 33.52,
       "name": "pop",
-      "gain": 0.8
+      "gain": 0.7
+    },
+    {
+      "time": 33.62,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 33.9,
+      "name": "pop",
+      "gain": 0.7
     },
     {
       "time": 34.5,

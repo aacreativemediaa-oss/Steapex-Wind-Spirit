@@ -68,7 +68,7 @@ SFX = [
     (22.95, "whoosh", 0.7), (25.20, "pop", 0.7), (25.80, "pop", 0.7),
     (27.15, "zap", 0.6), (27.55, "ding", 0.6),
     (29.05, "riser", 0.6), (30.52, "impact", 0.8), (31.20, "cha_ching", 0.8),
-    (33.35, "pop", 0.7), (33.85, "pop", 0.8), (34.50, "zap", 0.5),
+    (33.30, "pop", 0.6), (33.42, "pop", 0.7), (33.52, "pop", 0.7), (33.62, "pop", 0.7), (33.90, "pop", 0.7), (34.50, "zap", 0.5),
 ]
 
 S = 0.70  # graphics at 70% of first-pass size; caption fixed at 60px
@@ -239,11 +239,13 @@ TEMPLATE = r"""<!doctype html>
       #buy .stamp { display: inline-block; margin-top: 14px; background: var(--yellow); color: #000; -webkit-text-stroke: 0;
                     font-size: {{200}}; line-height: 1.05; padding: 8px 44px 4px; border: 8px solid #000; border-radius: 22px;
                     box-shadow: 10px 10px 0 #000; transform-origin: 50% 50%; }
-      #buy .card { position: absolute; left: 120px; width: 660px; top: 800px; background: rgba(0,0,0,.8);
+      #buy .card { position: absolute; left: 120px; width: 660px; top: 640px; background: rgba(0,0,0,.8);
                    border: 5px solid var(--neon); border-radius: 28px; padding: 22px 30px; text-align: center; }
       #buy .pick { font-size: {{96}}; color: var(--neon); }
-      #buy .sw { display: flex; justify-content: center; gap: 18px; margin: 12px 0 10px; }
-      #buy .sw i { width: 58px; height: 58px; border-radius: 50%; border: 5px solid #fff; display: block; }
+      #buy .sw { display: flex; justify-content: center; gap: 14px; margin: 14px 0 12px; }
+      #buy .sw .tile { width: 188px; display: flex; flex-direction: column; align-items: center; gap: 6px; transform-origin: 50% 60%; }
+      #buy .sw img { width: 188px; height: 235px; object-fit: cover; border-radius: 16px; border: 4px solid #fff; display: block; }
+      #buy .sw .nm { font-size: {{40}}; color: #fff; }
       #buy .line { font-family: var(--font-label); font-weight: 800; color: #fff; font-size: {{46}}; line-height: 1.3;
                    display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
       #buy .line .bagsvg { width: 54px; height: 54px; }
@@ -352,7 +354,11 @@ TEMPLATE = r"""<!doctype html>
         </div>
         <div class="card" id="bcard">
           <div class="display pick">Pilih warna &amp; saiz</div>
-          <div class="sw" id="bsw"><i style="background:#19d6c6"></i><i style="background:linear-gradient(135deg,#fff 45%,#7b3fe4)"></i><i style="background:#2b2d33"></i></div>
+          <div class="sw" id="bsw">
+            <div class="tile" id="sw1"><img src="assets/img/shoe_teal.jpg" alt="" /><div class="nm label">Hijau</div></div>
+            <div class="tile" id="sw2"><img src="assets/img/shoe_white.jpg" alt="" /><div class="nm label">Putih</div></div>
+            <div class="tile" id="sw3"><img src="assets/img/shoe_black.jpg" alt="" /><div class="nm label">Hitam</div></div>
+          </div>
           <div class="line">kat <em>beg kuning</em> __BAG__ bawah ni</div>
         </div>
         <div class="bigbag" id="bbag">__BAG__</div>
@@ -428,7 +434,11 @@ TEMPLATE = r"""<!doctype html>
       tl.fromTo("#bh1", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, 30.64);
       tl.fromTo("#bstamp", { scale: 3, rotation: 0, opacity: 0 }, { scale: 1, rotation: -4, opacity: 1, duration: 0.3, ease: "power4.in" }, 31.1);
       tl.fromTo("#bcard", { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, 33.3);
-      tl.fromTo("#bsw i", { scale: 0 }, { scale: 1, duration: 0.25, stagger: 0.08, ease: "back.out(3)" }, 33.85);
+      tl.fromTo("#bsw .tile", { scale: 0, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.3, stagger: 0.1, ease: "back.out(2.6)" }, 33.38);
+      [["#sw1", 34.55], ["#sw2", 34.85], ["#sw3", 35.15]].forEach(([s, t]) => {
+        tl.to(s, { scale: 1.08, duration: 0.15, ease: "sine.out" }, t);
+        tl.to(s, { scale: 1, duration: 0.15, ease: "sine.in" }, t + 0.15);
+      });
       tl.fromTo("#bbag", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.4)" }, 33.85);
       for (let k = 0; k < 2; k++) {
         tl.to("#bbag", { y: -18, duration: 0.2, ease: "sine.out" }, 34.35 + k * 0.45);
