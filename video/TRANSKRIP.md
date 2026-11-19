@@ -32,8 +32,8 @@ footage dikekalkan pada 30%.
 | Masa | Babak | Grafik | Caption (Anton 60px) |
 |---|---|---|---|
 | 0.0–4.0 | Hook (1 shot, laju asal) | **3 CIRI KASUT JOGGING PADU** | *disembunyikan — grafik tunjuk ayat sama* |
-| 4.0–7.0 | Foam close-up | CIRI #1 · FOAM TEBAL + SHOCK ABSORPTION | *disembunyikan* |
-| 7.0–11.0 | Ujian bola jatuh | tag "Ujian bola jatuh" + anak panah | SERAP **IMPAK** HENTAK · DENGAN BAIK · WALAUPUN BADAN · **PLUS SIZE** |
+| 4.0–6.3 | Picit foam tapak kasut | CIRI #1 · FOAM TEBAL + SHOCK ABSORPTION | *disembunyikan* |
+| 6.3–11.0 | Ujian bola jatuh | tag "Ujian bola jatuh" + anak panah | SERAP **IMPAK** HENTAK · DENGAN BAIK · WALAUPUN BADAN · **PLUS SIZE** |
 | 11.0–14.0 | Tapak dilentur | CIRI #2 · TAPAK RESPONSIVE | *disembunyikan* |
 | 14.0–17.0 | Lompat di trek | — | RASA **BOUNCY** · BILA JOGGING |
 | 17.0–20.0 | Penimbang | lencana **240g RINGAN** | *"dan ringan" disembunyikan* |

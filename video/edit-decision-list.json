@@ -15,15 +15,15 @@
       "id": "c02",
       "file": "c02_foam.mp4",
       "start": 4.0,
-      "duration": 3.0,
-      "source": "lv_0_20251221130556 60.5-63.5 midsole foam close-up"
+      "duration": 2.3,
+      "source": "lv_0_20251221130556 35.62-37.92 hands squeezing midsole foam"
     },
     {
       "id": "c03",
       "file": "c03_ball.mp4",
-      "start": 7.0,
-      "duration": 4.0,
-      "source": "lv_7535...181155 0.3-4.3 ball-drop impact test (right half of split-screen, cropped 9:16)"
+      "start": 6.3,
+      "duration": 4.7,
+      "source": "lv_7535...181155 0.0-4.7 ball-drop impact test (right half of split-screen, cropped 9:16)"
     },
     {
       "id": "c04",
@@ -178,7 +178,7 @@
       "gain": 0.7
     },
     {
-      "time": 6.95,
+      "time": 6.25,
       "name": "zap",
       "gain": 0.8
     },

@@ -13,8 +13,8 @@ SFX_VOL = 0.32       # SFX sit low; there is no voiceover in the source footage
 # ---- Edit decision list: (id, file, start, duration, source note) -------------------------------
 CLIPS = [
     ("c01", "c01_hook.mp4", 0.0, 4.0, "video_20260117_220257 0.5-4.5  treadmill feet (intro, one shot)"),
-    ("c02", "c02_foam.mp4", 4.0, 3.0, "lv_0_20251221130556 60.5-63.5 midsole foam close-up"),
-    ("c03", "c03_ball.mp4", 7.0, 4.0, "lv_7535...181155 0.3-4.3 ball-drop impact test (right half of split-screen, cropped 9:16)"),
+    ("c02", "c02_foam.mp4", 4.0, 2.3, "lv_0_20251221130556 35.62-37.92 hands squeezing midsole foam"),
+    ("c03", "c03_ball.mp4", 6.3, 4.7, "lv_7535...181155 0.0-4.7 ball-drop impact test (right half of split-screen, cropped 9:16)"),
     ("c04", "c04_flex.mp4", 11.0, 3.0, "lv_0_20251221130556 40.5-43.5 sole flex"),
     ("c05", "c05_jump.mp4", 14.0, 3.0, "video_20260429_114829 41-44 jumping on track"),
     ("c06", "c06_scale.mp4", 17.0, 3.0, "video_20251221_162434 0.8-3.8 shoe on scale 240g"),
@@ -44,7 +44,7 @@ SFX_LEN = {"whoosh": 0.45, "pop": 0.12, "ding": 1.0, "impact": 0.9, "cha_ching":
 SFX = [
     (0.02, "impact", 1.0), (0.32, "whoosh", 0.8), (0.95, "pop", 0.9),
     (3.80, "whoosh", 0.9), (4.15, "ding", 0.7),
-    (6.95, "zap", 0.8), (7.40, "pop", 0.6),
+    (6.25, "zap", 0.8), (7.40, "pop", 0.6),
     (10.80, "whoosh", 0.9), (11.15, "ding", 0.7),
     (13.85, "whoosh", 0.8), (14.35, "pop", 0.6),
     (16.95, "zap", 0.8), (18.70, "pop", 1.0),
@@ -289,7 +289,7 @@ TEMPLATE = r"""<!doctype html>
           <div class="display sub" id="f1s">+ Shock Absorption</div>
         </div>
       </div>
-      <div class="clip" id="balltag" data-start="7" data-duration="4" data-track-index="13">
+      <div class="clip" id="balltag" data-start="6.3" data-duration="4.7" data-track-index="13">
         <div class="tag label" id="btag">Ujian bola jatuh</div>
         <div class="chev" id="bchev"><i></i><i></i><i></i></div>
       </div>
@@ -389,7 +389,7 @@ TEMPLATE = r"""<!doctype html>
       tl.fromTo("#f1s", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 4.45);
 
       // BALL TEST
-      tl.fromTo("#btag", { x: -300, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 7.1);
+      tl.fromTo("#btag", { x: -300, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 6.4);
       gsap.set("#bchev i", { opacity: 0.15 });
       for (let k = 0; k < 6; k++) {
         tl.to("#bchev i", { opacity: 1, duration: 0.18, stagger: 0.12 }, 7.2 + k * 0.6);

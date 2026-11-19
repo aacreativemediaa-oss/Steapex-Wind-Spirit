@@ -128,8 +128,8 @@
     <div id="root" data-composition-id="main" data-start="0" data-duration="33.85" data-fps="60" data-width="1080" data-height="1920">
       <!-- FOOTAGE (10 clips, original sound 30%) -->
       <video id="c01" class="clip shot" src="assets/clips/c01_hook.mp4" data-start="0.0" data-duration="4.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="0" playsinline></video>
-      <video id="c02" class="clip shot" src="assets/clips/c02_foam.mp4" data-start="4.0" data-duration="3.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="1" playsinline></video>
-      <video id="c03" class="clip shot" src="assets/clips/c03_ball.mp4" data-start="7.0" data-duration="4.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="2" playsinline></video>
+      <video id="c02" class="clip shot" src="assets/clips/c02_foam.mp4" data-start="4.0" data-duration="2.3" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="1" playsinline></video>
+      <video id="c03" class="clip shot" src="assets/clips/c03_ball.mp4" data-start="6.3" data-duration="4.7" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="2" playsinline></video>
       <video id="c04" class="clip shot" src="assets/clips/c04_flex.mp4" data-start="11.0" data-duration="3.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="3" playsinline></video>
       <video id="c05" class="clip shot" src="assets/clips/c05_jump.mp4" data-start="14.0" data-duration="3.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="4" playsinline></video>
       <video id="c06" class="clip shot" src="assets/clips/c06_scale.mp4" data-start="17.0" data-duration="3.0" data-media-start="0" data-volume="0.3" data-has-audio="true" data-track-index="5" playsinline></video>
@@ -162,7 +162,7 @@
           <div class="display sub" id="f1s">+ Shock Absorption</div>
         </div>
       </div>
-      <div class="clip" id="balltag" data-start="7" data-duration="4" data-track-index="13">
+      <div class="clip" id="balltag" data-start="6.3" data-duration="4.7" data-track-index="13">
         <div class="tag label" id="btag">Ujian bola jatuh</div>
         <div class="chev" id="bchev"><i></i><i></i><i></i></div>
       </div>
@@ -234,7 +234,7 @@
 
       <!-- WHITE FLASH ON EVERY CUT -->
       <div class="clip flash" id="fl0" data-start="4.0" data-duration="0.3" data-track-index="30"></div>
-      <div class="clip flash" id="fl1" data-start="7.0" data-duration="0.3" data-track-index="30"></div>
+      <div class="clip flash" id="fl1" data-start="6.3" data-duration="0.3" data-track-index="30"></div>
       <div class="clip flash" id="fl2" data-start="11.0" data-duration="0.3" data-track-index="30"></div>
       <div class="clip flash" id="fl3" data-start="14.0" data-duration="0.3" data-track-index="30"></div>
       <div class="clip flash" id="fl4" data-start="17.0" data-duration="0.3" data-track-index="30"></div>
@@ -249,7 +249,7 @@
       <audio id="sfx2" src="assets/sfx/pop.wav" data-start="0.95" data-duration="0.12" data-volume="0.288"></audio>
       <audio id="sfx3" src="assets/sfx/whoosh.wav" data-start="3.8" data-duration="0.45" data-volume="0.288"></audio>
       <audio id="sfx4" src="assets/sfx/ding.wav" data-start="4.15" data-duration="1.0" data-volume="0.224"></audio>
-      <audio id="sfx5" src="assets/sfx/zap.wav" data-start="6.95" data-duration="0.25" data-volume="0.256"></audio>
+      <audio id="sfx5" src="assets/sfx/zap.wav" data-start="6.25" data-duration="0.25" data-volume="0.256"></audio>
       <audio id="sfx6" src="assets/sfx/pop.wav" data-start="7.4" data-duration="0.12" data-volume="0.192"></audio>
       <audio id="sfx7" src="assets/sfx/whoosh.wav" data-start="10.8" data-duration="0.45" data-volume="0.288"></audio>
       <audio id="sfx8" src="assets/sfx/ding.wav" data-start="11.15" data-duration="1.0" data-volume="0.224"></audio>
@@ -276,8 +276,8 @@
 
       // brief zoom-in on every clip
       tl.fromTo("#c01",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},0.0);tl.to("#c01",{scale:1.11,duration:3.55,ease:"none"},0.45);
-      tl.fromTo("#c02",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},4.0);tl.to("#c02",{scale:1.11,duration:2.55,ease:"none"},4.45);
-      tl.fromTo("#c03",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},7.0);tl.to("#c03",{scale:1.11,duration:3.55,ease:"none"},7.45);
+      tl.fromTo("#c02",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},4.0);tl.to("#c02",{scale:1.11,duration:1.85,ease:"none"},4.45);
+      tl.fromTo("#c03",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},6.3);tl.to("#c03",{scale:1.11,duration:4.25,ease:"none"},6.75);
       tl.fromTo("#c04",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},11.0);tl.to("#c04",{scale:1.11,duration:2.55,ease:"none"},11.45);
       tl.fromTo("#c05",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},14.0);tl.to("#c05",{scale:1.11,duration:2.55,ease:"none"},14.45);
       tl.fromTo("#c06",{scale:1.0},{scale:1.07,duration:0.45,ease:"power2.out"},17.0);tl.to("#c06",{scale:1.11,duration:2.55,ease:"none"},17.45);
@@ -288,7 +288,7 @@
 
       // white flash at each cut
       tl.fromTo("#fl0",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},4.0);
-      tl.fromTo("#fl1",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},7.0);
+      tl.fromTo("#fl1",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},6.3);
       tl.fromTo("#fl2",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},11.0);
       tl.fromTo("#fl3",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},14.0);
       tl.fromTo("#fl4",{opacity:0.9},{opacity:0,duration:0.22,ease:"power1.out"},17.0);
@@ -317,7 +317,7 @@
       tl.fromTo("#f1s", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 4.45);
 
       // BALL TEST
-      tl.fromTo("#btag", { x: -300, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 7.1);
+      tl.fromTo("#btag", { x: -300, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 6.4);
       gsap.set("#bchev i", { opacity: 0.15 });
       for (let k = 0; k < 6; k++) {
         tl.to("#bchev i", { opacity: 1, duration: 0.18, stagger: 0.12 }, 7.2 + k * 0.6);
