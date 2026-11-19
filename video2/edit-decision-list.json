@@ -15,6 +15,7 @@
       "file": "v01_ball.mp4",
       "start": 0.0,
       "duration": 4.75,
+      "volume": 0.3,
       "source": "lv_7535...181155 0-4.75 ball-drop split-screen (intro, one shot, natural speed)"
     },
     {
@@ -22,6 +23,7 @@
       "file": "v02_flex.mp4",
       "start": 4.75,
       "duration": 3.25,
+      "volume": 0.3,
       "source": "lv_0_20251221130556 40.5-43.75 sole flex"
     },
     {
@@ -29,6 +31,7 @@
       "file": "v03_hop.mp4",
       "start": 8.0,
       "duration": 4.95,
+      "volume": 0.3,
       "source": "lv_0_20251221233711 41.4-46.35 feet hopping"
     },
     {
@@ -36,6 +39,7 @@
       "file": "v04_tread.mp4",
       "start": 12.95,
       "duration": 2.15,
+      "volume": 0.3,
       "source": "video_20260117_220257 0.5-2.65 treadmill feet"
     },
     {
@@ -43,6 +47,7 @@
       "file": "v05_foam.mp4",
       "start": 15.1,
       "duration": 2.35,
+      "volume": 0.3,
       "source": "lv_0_20251221130556 35.62-37.97 squeezing midsole foam"
     },
     {
@@ -50,6 +55,7 @@
       "file": "v06_run.mp4",
       "start": 17.45,
       "duration": 2.65,
+      "volume": 0.3,
       "source": "video_20260429_114602 4.0-6.65 jogging on track"
     },
     {
@@ -57,6 +63,7 @@
       "file": "v07_smoke.mp4",
       "start": 20.1,
       "duration": 4.3,
+      "volume": 0.08,
       "source": "lv_0_20251221130556 77.55-81.85 smoke through mesh"
     },
     {
@@ -64,6 +71,7 @@
       "file": "v08_smokecu.mp4",
       "start": 24.4,
       "duration": 2.7,
+      "volume": 0.08,
       "source": "lv_0_20251221130556 82.2-84.9 smoke close-up"
     },
     {
@@ -71,6 +79,7 @@
       "file": "v09_knees.mp4",
       "start": 27.1,
       "duration": 6.55,
+      "volume": 0.3,
       "source": "video_20260118_102336 2.0-8.55 high knees in park (4K crop)"
     },
     {
@@ -78,6 +87,7 @@
       "file": "v10_cta.mp4",
       "start": 33.65,
       "duration": 4.97,
+      "volume": 0.3,
       "source": "lv_0_20251221233711 67.43-72.4 pair on mat (CTA)"
     }
   ],

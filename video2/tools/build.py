@@ -9,6 +9,8 @@ import json, pathlib, re
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 FPS = 60
 FOOTAGE_VOL = 0.30   # original footage sound at 30% (no source clip contains music)
+# per-clip overrides: the smoke-spray hiss masked the VO, so those two clips sit lower
+CLIP_VOL = {"v07": 0.08, "v08": 0.08}
 SFX_VOL = 0.30       # SFX kept well under the VO
 VO_FILE = "assets/audio/vo.wav"
 VO_LEN = 38.613
@@ -125,7 +127,7 @@ def build():
                     f'<video id="v01" class="clip sq" src="assets/clips/{f}" data-start="{s}" data-duration="{d}" '
                     f'data-media-start="0" data-volume="{FOOTAGE_VOL}" data-has-audio="true" data-track-index="1" playsinline></video>')
         return (f'<video id="{cid}" class="clip shot" src="assets/clips/{f}" data-start="{s}" data-duration="{d}" '
-                f'data-media-start="0" data-volume="{FOOTAGE_VOL}" data-has-audio="true" data-track-index="{i}" playsinline></video>')
+                f'data-media-start="0" data-volume="{CLIP_VOL.get(cid, FOOTAGE_VOL)}" data-has-audio="true" data-track-index="{i}" playsinline></video>')
     videos = "\n      ".join(video(i, *c[:4]) for i, c in enumerate(CLIPS))
     flashes = "\n      ".join(f'<div class="clip flash" id="fl{i}" data-start="{t}" data-duration="0.3" data-track-index="30"></div>'
                                for i, t in enumerate(CUTS))
@@ -148,7 +150,7 @@ def build():
     (ROOT / "edit-decision-list.json").write_text(json.dumps({
         "fps": FPS, "duration": TOTAL, "voiceover": {"file": VO_FILE, "start": 0, "volume": 1.0, "length": VO_LEN},
         "footage_volume": FOOTAGE_VOL, "sfx_volume": SFX_VOL,
-        "clips": [dict(id=c[0], file=c[1], start=c[2], duration=c[3], source=c[4]) for c in CLIPS],
+        "clips": [dict(id=c[0], file=c[1], start=c[2], duration=c[3], volume=CLIP_VOL.get(c[0], FOOTAGE_VOL), source=c[4]) for c in CLIPS],
         "captions": [dict(start=a, end=b, text=" ".join(w["text"] for w in t), hidden=h) for a, b, t, h, k in caption_chunks()],
         "sfx": [dict(time=t, name=n, gain=g) for t, n, g in SFX],
     }, indent=2, ensure_ascii=False))

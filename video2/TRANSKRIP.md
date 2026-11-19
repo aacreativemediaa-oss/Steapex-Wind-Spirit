@@ -3,6 +3,7 @@
 Sumber VO: `New Task.mov` (skrin hitam + voiceover, 38.61s). Transkrip: Whisper `large-v3` (ms), ejaan dibetulkan manual
 (melantur→melantun, mentahkan→hentakan, berisuak→brisk walk, Stipek Windspirit→Steapex Wind Spirit, Bek→beg).
 VO diletakkan pada 0.000s, volume 100%, tiada potongan — disahkan lag 0.00 ms & gain ≈1.00 pada render akhir.
+Bunyi asal footage 30%, kecuali dua klip ujian asap (20.1–27.1s) pada 8% kerana bunyi semburan menenggelamkan VO.
 
 ## 1. Transkrip VO
 
