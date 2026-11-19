@@ -11,8 +11,8 @@ FPS = 60
 FOOTAGE_VOL = 0.30   # original footage sound at 30% (no source clip contains music)
 # per-clip overrides: the smoke-spray hiss masked the VO, so those two clips sit lower
 CLIP_VOL = {"v07": 0.08, "v08": 0.08}
-# zoom anchor per clip (default centre); v09 anchors low so the shoes stay in frame
-CLIP_ORIGIN = {"v09": "50% 82%"}
+# zoom anchor per clip (default centre); v09 anchors lower so the shoes stay in frame
+CLIP_ORIGIN = {"v09": "50% 70%"}
 SFX_VOL = 0.30       # SFX kept well under the VO
 VO_FILE = "assets/audio/vo.wav"
 VO_LEN = 40.773
@@ -27,7 +27,7 @@ CLIPS = [
     ("v06", "v06_run.mp4", 19.10, 3.10, "video_20260429_114602 4.0-7.1 jogging on track"),
     ("v07", "v07_smoke.mp4", 22.20, 4.30, "lv_0_20251221130556 77.55-81.85 smoke through mesh"),
     ("v08", "v08_smokecu.mp4", 26.50, 2.70, "lv_0_20251221130556 82.2-84.9 smoke close-up"),
-    ("v09", "v09_knees.mp4", 29.20, 7.10, "video_20260118_102336 2.0-9.1 high knees in park (portrait 4K, full frame)"),
+    ("v09", "v09_walk.mp4", 29.20, 7.10, "lv_0_20251209143405 43.2-49.45 at 0.88x, white/purple shoes stepping on track"),
     ("v10", "v10_cta.mp4", 36.30, 4.97, "lv_0_20251221233711 67.43-72.4 pair on mat (CTA)"),
 ]
 TOTAL = round(CLIPS[-1][2] + CLIPS[-1][3], 3)

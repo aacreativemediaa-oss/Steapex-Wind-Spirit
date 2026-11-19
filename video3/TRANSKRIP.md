@@ -36,7 +36,7 @@ Bunyi asal footage 30%, kecuali dua klip ujian asap (22.2–29.2s) pada 8% supay
 | 19.10–22.20 | video_20260429_114602 4.0-7.1 jogging on track | CIRI #2 + penjejak JARAK 0→10.0 KM |
 | 22.20–26.50 | lv_0_20251221130556 77.55-81.85 smoke through mesh | CIRI #3 · KAIN BREATHABLE (dari 23.1s) |
 | 26.50–29.20 | lv_0_20251221130556 82.2-84.9 smoke close-up | CIRI #3 + anak panah haba naik |
-| 29.20–36.30 | video_20260118_102336 2.0-9.1 high knees in park (portrait 4K, full frame) | ✓ BERSENAM · ✓ BRISK WALK · ✓ JOGGING PETANG |
+| 29.20–36.30 | lv_0_20251209143405 43.2-49.45 at 0.88x, white/purple shoes stepping on track | ✓ BERSENAM · ✓ BRISK WALK · ✓ JOGGING PETANG |
 | 36.30–41.27 | lv_0_20251221233711 67.43-72.4 pair on mat (CTA) | CTA: HARGA TENGAH MURAH! · CHECK OUT dekat beg kuning 🛍 bawah ni + ikon beg & anak panah |
 
 ## 3. Caption yang disembunyikan (grafik sudah tunjuk klausa sama)
