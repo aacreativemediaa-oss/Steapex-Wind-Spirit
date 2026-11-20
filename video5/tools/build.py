@@ -9,8 +9,8 @@ import json, pathlib, re
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 FPS = 60
 FOOTAGE_VOL = 0.30   # original footage sound at 30%
-# per-clip overrides: B-roll 102551 has loud wind (would mask the VO) -> 10%; smoke spray hiss -> 8%
-CLIP_VOL = {"e02": 0.10, "e09": 0.10, "e08": 0.08}
+# per-clip overrides: smoke spray hiss -> 8%
+CLIP_VOL = {"e08": 0.08}
 CLIP_ORIGIN = {"e07": "50% 70%"}   # zoom anchor kept low so shoes stay in frame
 SFX_VOL = 0.30
 VO_FILE = "assets/audio/vo.wav"
@@ -19,14 +19,14 @@ VO_LEN = 31.345
 # ---- Edit decision list (10 clips) ---------------------------------------------------------------
 CLIPS = [
     ("e01", "e01_ball.mp4", 0.00, 5.60, "lv_7535...181155 0-5.6 ball-drop split-screen (intro, one shot, natural speed)"),
-    ("e02", "e02_runfar.mp4", 5.60, 2.70, "B ROLL video_20250720_102551 1.0-3.7 runner on track (wide)"),
+    ("e02", "e02_run.mp4", 5.60, 2.70, "video_20260429_114602 4.0-6.7 jogging on track, Emerald Green"),
     ("e03", "e03_hop.mp4", 8.30, 2.90, "lv_0_20251221233711 41.4-44.3 feet hopping, Emerald Green"),
-    ("e04", "e04_walk.mp4", 11.20, 3.50, "B ROLL video_20251226_091144 0.3-3.8 walking on track (cropped to upper body: other-brand shoes out of frame)"),
+    ("e04", "e04_jog.mp4", 11.20, 3.50, "lv_0_20251221233711 54.45-57.95 jogging on the spot, Emerald Green"),
     ("e05", "e05_tread.mp4", 14.70, 2.30, "video_20260117_220257 0.5-2.8 treadmill feet, Emerald Green"),
     ("e06", "e06_foamblk.mp4", 17.00, 3.00, "lv_0_20251220180407 56.65-59.65 squeezing midsole foam, Black"),
     ("e07", "e07_step.mp4", 20.00, 2.60, "lv_0_20251209143405 43.2-45.8 stepping, Violet"),
     ("e08", "e08_smoke.mp4", 22.60, 3.20, "lv_0_20251221130556 77.55-80.75 smoke through mesh, Emerald Green"),
-    ("e09", "e09_watch.mp4", 25.80, 2.80, "B ROLL video_20250720_102551 17.0-19.8 runner checks his watch (cropped: other-brand shoes out of frame)"),
+    ("e09", "e09_black.mp4", 25.80, 2.80, "lv_0_20251220180407 94.05-96.85 Black shoe held (CTA)"),
     ("e10", "e10_cta.mp4", 28.60, 3.50, "lv_0_20251221233711 67.43-70.93 pair on mat (CTA)"),
 ]
 TOTAL = round(CLIPS[-1][2] + CLIPS[-1][3], 3)

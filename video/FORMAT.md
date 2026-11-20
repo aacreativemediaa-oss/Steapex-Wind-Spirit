@@ -55,6 +55,8 @@ Projek rujukan terkini: `video4/` (salin `tools/build.py` sebagai titik mula).
 **Visual**
 - Setiap shot gaya hidup mesti **nampak kasut** (rakaman potret 4K berputar: guna frame penuh, jangan crop landskap).
 - Variasi warna kasut digalakkan (bukan teal sahaja).
+- **B-roll (folder B ROLL) hanya untuk bahagian sakit tumit/kaki.** Jika VO tiada bahagian sakit, jangan guna B-roll langsung;
+  semua shot lain guna footage kasut Steapex (jangan tunjuk kasut jenama lain).
 - Overlay diletakkan tepat pada subjek (semak dengan snapshot pada masa sebenar).
 
 **CTA**

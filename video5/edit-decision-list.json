@@ -20,11 +20,11 @@
     },
     {
       "id": "e02",
-      "file": "e02_runfar.mp4",
+      "file": "e02_run.mp4",
       "start": 5.6,
       "duration": 2.7,
-      "volume": 0.1,
-      "source": "B ROLL video_20250720_102551 1.0-3.7 runner on track (wide)"
+      "volume": 0.3,
+      "source": "video_20260429_114602 4.0-6.7 jogging on track, Emerald Green"
     },
     {
       "id": "e03",
@@ -36,11 +36,11 @@
     },
     {
       "id": "e04",
-      "file": "e04_walk.mp4",
+      "file": "e04_jog.mp4",
       "start": 11.2,
       "duration": 3.5,
       "volume": 0.3,
-      "source": "B ROLL video_20251226_091144 0.3-3.8 walking on track (cropped to upper body: other-brand shoes out of frame)"
+      "source": "lv_0_20251221233711 54.45-57.95 jogging on the spot, Emerald Green"
     },
     {
       "id": "e05",
@@ -76,11 +76,11 @@
     },
     {
       "id": "e09",
-      "file": "e09_watch.mp4",
+      "file": "e09_black.mp4",
       "start": 25.8,
       "duration": 2.8,
-      "volume": 0.1,
-      "source": "B ROLL video_20250720_102551 17.0-19.8 runner checks his watch (cropped: other-brand shoes out of frame)"
+      "volume": 0.3,
+      "source": "lv_0_20251220180407 94.05-96.85 Black shoe held (CTA)"
     },
     {
       "id": "e10",
