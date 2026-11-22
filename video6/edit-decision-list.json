@@ -1,0 +1,371 @@
+{
+  "fps": 60,
+  "duration": 40.27,
+  "voiceover": null,
+  "footage_volume": 0.3,
+  "sfx_volume": 0.32,
+  "headline_px": 150,
+  "subheadline_px": 70,
+  "clips": [
+    {
+      "id": "t01",
+      "file": "t01_run.mp4",
+      "start": 0.0,
+      "duration": 4.2,
+      "volume": 0.3,
+      "source": "video_20260429_114602 5.8-10.0 runner on track, Emerald Green (intro, one shot)"
+    },
+    {
+      "id": "t02",
+      "file": "t02_jog.mp4",
+      "start": 4.2,
+      "duration": 4.4,
+      "volume": 0.3,
+      "source": "lv_0_20251221233711 54.4-58.8 jogging on the spot, Emerald Green"
+    },
+    {
+      "id": "t03",
+      "file": "t03_tread.mp4",
+      "start": 8.6,
+      "duration": 3.4,
+      "volume": 0.3,
+      "source": "video_20260117_220257 0.5-3.9 treadmill feet, Emerald Green"
+    },
+    {
+      "id": "t04",
+      "file": "t04_knees.mp4",
+      "start": 12.0,
+      "duration": 6.5,
+      "volume": 0.3,
+      "source": "video_20260118_102336 2.0-8.5 high-knee warm-up in park, Emerald Green"
+    },
+    {
+      "id": "t05",
+      "file": "t05_foam.mp4",
+      "start": 18.5,
+      "duration": 3.0,
+      "volume": 0.3,
+      "source": "lv_0_20251220180407 56.65-59.65 squeezing midsole foam, Black"
+    },
+    {
+      "id": "t06",
+      "file": "t06_massage.mp4",
+      "start": 21.5,
+      "duration": 2.1,
+      "volume": 0.3,
+      "source": "B ROLL video_20260429_114700 0.3-2.4 massaging a sore foot (foot-pain part)"
+    },
+    {
+      "id": "t07",
+      "file": "t07_hop.mp4",
+      "start": 23.6,
+      "duration": 3.4,
+      "volume": 0.3,
+      "source": "lv_0_20251221233711 41.4-44.8 feet hopping, Emerald Green"
+    },
+    {
+      "id": "t08",
+      "file": "t08_smoke.mp4",
+      "start": 27.0,
+      "duration": 4.3,
+      "volume": 0.08,
+      "source": "lv_0_20251221130556 77.55-81.85 smoke through mesh, Emerald Green"
+    },
+    {
+      "id": "t09",
+      "file": "t09_flex.mp4",
+      "start": 31.3,
+      "duration": 4.0,
+      "volume": 0.3,
+      "source": "lv_0_20251221130556 40.5-44.5 sole flex, Emerald Green"
+    },
+    {
+      "id": "t10",
+      "file": "t10_cta.mp4",
+      "start": 35.3,
+      "duration": 4.97,
+      "volume": 0.3,
+      "source": "lv_0_20251221233711 67.43-72.4 pair on mat (CTA)"
+    }
+  ],
+  "captions": [
+    {
+      "start": 5.3,
+      "end": 6.4,
+      "text": "Pastikan heart rate",
+      "keywords": "HEART RATE"
+    },
+    {
+      "start": 6.4,
+      "end": 7.3,
+      "text": "maintain dalam",
+      "keywords": ""
+    },
+    {
+      "start": 7.3,
+      "end": 8.3,
+      "text": "Zone 2.",
+      "keywords": "ZONE 2"
+    },
+    {
+      "start": 8.7,
+      "end": 9.6,
+      "text": "Pace laju",
+      "keywords": "PACE"
+    },
+    {
+      "start": 9.6,
+      "end": 10.5,
+      "text": "bukan ukuran",
+      "keywords": ""
+    },
+    {
+      "start": 10.5,
+      "end": 11.85,
+      "text": "kesihatan.",
+      "keywords": "KESIHATAN"
+    },
+    {
+      "start": 13.0,
+      "end": 14.3,
+      "text": "Jangan terus berlari",
+      "keywords": "JANGAN"
+    },
+    {
+      "start": 14.3,
+      "end": 15.2,
+      "text": "tanpa panaskan",
+      "keywords": ""
+    },
+    {
+      "start": 15.2,
+      "end": 16.0,
+      "text": "badan.",
+      "keywords": ""
+    },
+    {
+      "start": 16.2,
+      "end": 17.1,
+      "text": "Dapat kurangkan",
+      "keywords": ""
+    },
+    {
+      "start": 17.1,
+      "end": 18.4,
+      "text": "risiko injury.",
+      "keywords": "INJURY"
+    },
+    {
+      "start": 20.0,
+      "end": 21.0,
+      "text": "Dapat kurangkan",
+      "keywords": ""
+    },
+    {
+      "start": 21.6,
+      "end": 22.4,
+      "text": "sakit pada",
+      "keywords": "SAKIT"
+    },
+    {
+      "start": 22.4,
+      "end": 23.5,
+      "text": "tapak kaki.",
+      "keywords": ""
+    },
+    {
+      "start": 23.9,
+      "end": 24.8,
+      "text": "Lebih enjoy",
+      "keywords": "ENJOY"
+    },
+    {
+      "start": 24.8,
+      "end": 26.7,
+      "text": "jogging setiap hari.",
+      "keywords": ""
+    },
+    {
+      "start": 28.2,
+      "end": 29.4,
+      "text": "Tak rasa berkuap",
+      "keywords": "BERKUAP"
+    },
+    {
+      "start": 29.4,
+      "end": 30.3,
+      "text": "atau panas bila",
+      "keywords": "PANAS"
+    },
+    {
+      "start": 30.3,
+      "end": 31.25,
+      "text": "jogging lama.",
+      "keywords": ""
+    },
+    {
+      "start": 32.5,
+      "end": 33.7,
+      "text": "Lebih stabil pada",
+      "keywords": "STABIL"
+    },
+    {
+      "start": 33.7,
+      "end": 35.2,
+      "text": "setiap langkah.",
+      "keywords": ""
+    }
+  ],
+  "sfx": [
+    {
+      "time": 0.02,
+      "name": "impact",
+      "gain": 0.9
+    },
+    {
+      "time": 0.35,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 0.8,
+      "name": "pop",
+      "gain": 0.8
+    },
+    {
+      "time": 2.2,
+      "name": "pop",
+      "gain": 0.9
+    },
+    {
+      "time": 2.35,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 4.15,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 4.35,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 5.5,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 7.3,
+      "name": "ding",
+      "gain": 0.5
+    },
+    {
+      "time": 8.55,
+      "name": "zap",
+      "gain": 0.6
+    },
+    {
+      "time": 11.95,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 12.15,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 13.2,
+      "name": "pop",
+      "gain": 0.6
+    },
+    {
+      "time": 18.45,
+      "name": "zap",
+      "gain": 0.6
+    },
+    {
+      "time": 18.65,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 21.45,
+      "name": "whoosh",
+      "gain": 0.6
+    },
+    {
+      "time": 21.65,
+      "name": "impact",
+      "gain": 0.5
+    },
+    {
+      "time": 23.55,
+      "name": "whoosh",
+      "gain": 0.6
+    },
+    {
+      "time": 26.95,
+      "name": "zap",
+      "gain": 0.6
+    },
+    {
+      "time": 27.15,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 31.25,
+      "name": "whoosh",
+      "gain": 0.7
+    },
+    {
+      "time": 31.45,
+      "name": "ding",
+      "gain": 0.6
+    },
+    {
+      "time": 33.8,
+      "name": "riser",
+      "gain": 0.6
+    },
+    {
+      "time": 35.28,
+      "name": "impact",
+      "gain": 0.8
+    },
+    {
+      "time": 35.6,
+      "name": "cha_ching",
+      "gain": 0.7
+    },
+    {
+      "time": 36.35,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 36.45,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 36.55,
+      "name": "pop",
+      "gain": 0.7
+    },
+    {
+      "time": 36.9,
+      "name": "pop",
+      "gain": 0.8
+    },
+    {
+      "time": 37.6,
+      "name": "zap",
+      "gain": 0.5
+    }
+  ]
+}
