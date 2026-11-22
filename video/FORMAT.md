@@ -68,6 +68,8 @@ Projek rujukan terkini: `video4/` (salin `tools/build.py` sebagai titik mula).
 - `hyperframes render --fps 60 --quality delivery --video-bitrate 14200k` (≈70 MB untuk ~38s).
 
 ## Kemas kini format (video6 — Tips Jogging Untuk Pemula)
-- **Headline 150px, sub-headline 70px** (Anton). Caption kekal 60px; label kecil Montserrat ≥28px.
+- ~~Headline 150px, sub-headline 70px~~ → **dikemas kini: headline 100px, sub-headline 47px, caption 40px, label kecil ~19px**
+  (semua tulisan dikecilkan dengan kadar sama ×⅔).
 - **Saiz video ~70 MB:** pilih `--video-bitrate` ikut panjang video (≈14.5M untuk ~40s).
+- Shot plate flexible: guna footage kasut ditekan & **melantun ke atas** (cth. lv_0_20251221130556 64.8–71.8s).
 - Video tanpa VO: caption ikut skrip; blok TIPS #n / KELEBIHAN #n (chip + headline + sub-headline); CTA tunjuk 3 warna.

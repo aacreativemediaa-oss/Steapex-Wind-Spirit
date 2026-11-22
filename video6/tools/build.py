@@ -11,12 +11,12 @@ FOOTAGE_VOL = 0.30                     # original footage sound at 30% (no sourc
 CLIP_VOL = {"t08": 0.08}               # smoke spray hiss -> 8%
 CLIP_ORIGIN = {"t04": "50% 82%"}       # zoom anchored low so the shoes stay in frame
 SFX_VOL = 0.32
-H1 = 150   # headline px
-H2 = 70    # sub-headline px
+H1 = 100   # headline px
+H2 = 47    # sub-headline px (all text scaled x2/3 with the headline: 150 -> 100)
 
 # ---- Edit decision list (10 clips) ---------------------------------------------------------------
 CLIPS = [
-    ("t01", "t01_run.mp4", 0.00, 4.20, "video_20260429_114602 5.8-10.0 runner on track, Emerald Green (intro, one shot)"),
+    ("t01", "t01_run.mp4", 0.00, 4.20, "video_20260429_114602 4.6-8.8 runner on track, Emerald Green (intro, one shot)"),
     ("t02", "t02_jog.mp4", 4.20, 4.40, "lv_0_20251221233711 54.4-58.8 jogging on the spot, Emerald Green"),
     ("t03", "t03_tread.mp4", 8.60, 3.40, "video_20260117_220257 0.5-3.9 treadmill feet, Emerald Green"),
     ("t04", "t04_knees.mp4", 12.00, 6.50, "video_20260118_102336 2.0-8.5 high-knee warm-up in park, Emerald Green"),
@@ -24,7 +24,7 @@ CLIPS = [
     ("t06", "t06_massage.mp4", 21.50, 2.10, "B ROLL video_20260429_114700 0.3-2.4 massaging a sore foot (foot-pain part)"),
     ("t07", "t07_hop.mp4", 23.60, 3.40, "lv_0_20251221233711 41.4-44.8 feet hopping, Emerald Green"),
     ("t08", "t08_smoke.mp4", 27.00, 4.30, "lv_0_20251221130556 77.55-81.85 smoke through mesh, Emerald Green"),
-    ("t09", "t09_flex.mp4", 31.30, 4.00, "lv_0_20251221130556 40.5-44.5 sole flex, Emerald Green"),
+    ("t09", "t09_bounce.mp4", 31.30, 4.00, "lv_0_20251221130556 64.8-68.8 shoe pressed and springing back up, Emerald Green"),
     ("t10", "t10_cta.mp4", 35.30, 4.97, "lv_0_20251221233711 67.43-72.4 pair on mat (CTA)"),
 ]
 TOTAL = round(CLIPS[-1][2] + CLIPS[-1][3], 3)
@@ -54,7 +54,7 @@ SFX = [
     (36.35, "pop", 0.7), (36.45, "pop", 0.7), (36.55, "pop", 0.7), (36.90, "pop", 0.8), (37.60, "zap", 0.5),
 ]
 
-S = 0.70  # small labels keep the 70%-of-first-pass scale; headline/sub-headline are absolute (H1/H2)
+S = 0.70 * 2 / 3  # small labels: 70%-of-first-pass scale, then x2/3 with the headline (150 -> 100px)
 def px(v): return f"{round(v * S)}px"
 
 
@@ -153,7 +153,7 @@ TEMPLATE = r"""<!doctype html>
       video.shot { object-fit: cover; transform-origin: 50% 50%; }
       .flash { background: #fff; opacity: 0; }
       .display { font-family: var(--font-display); text-transform: uppercase; line-height: 0.95; color: #fff;
-                 -webkit-text-stroke: 9px #000; paint-order: stroke fill; }
+                 -webkit-text-stroke: 6px #000; paint-order: stroke fill; }
       .label { font-family: var(--font-label); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
       .shade-top { position: absolute; left: 0; right: 0; top: 0; height: 1000px;
                    background: linear-gradient(180deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.4) 60%, rgba(0,0,0,0) 100%); }
@@ -163,43 +163,43 @@ TEMPLATE = r"""<!doctype html>
       /* HOOK */
       #hook .h { position: absolute; top: 330px; left: 120px; right: 120px; text-align: center; font-size: __H1__; }
       #hook .h .y { color: var(--yellow); }
-      #hook .save { position: absolute; top: 650px; left: 0; right: 0; text-align: center; }
-      #hook .save span { display: inline-flex; align-items: center; gap: 18px; background: var(--neon); color: #000; -webkit-text-stroke: 0;
-                         font-size: __H2__; line-height: 1.05; padding: 14px 34px 10px; border: 7px solid #000; border-radius: 22px;
-                         box-shadow: 8px 8px 0 #000; text-align: left; }
-      #hook .save svg { width: 70px; height: 90px; flex: none; }
+      #hook .save { position: absolute; top: 560px; left: 0; right: 0; text-align: center; }
+      #hook .save span { display: inline-flex; align-items: center; gap: 12px; background: var(--neon); color: #000; -webkit-text-stroke: 0;
+                         font-size: __H2__; line-height: 1.05; padding: 10px 24px 7px; border: 5px solid #000; border-radius: 16px;
+                         box-shadow: 6px 6px 0 #000; text-align: left; }
+      #hook .save svg { width: 47px; height: 60px; flex: none; }
 
       /* TIP / USP BLOCKS: headline __H1__, sub-headline __H2__ */
       .feat .box { position: absolute; top: 330px; left: 120px; right: 120px; }
       .feat .chip { display: inline-flex; align-items: center; gap: 14px; background: var(--neon); color: #000;
-                    padding: 12px 24px; border-radius: 14px; font-size: {{40}}; border: 4px solid #000; }
+                    padding: 8px 16px; border-radius: 10px; font-size: {{40}}; border: 3px solid #000; }
       .feat .chip b { background: #000; color: var(--neon); border-radius: 8px; padding: 2px 12px; }
-      .feat .title { font-size: __H1__; margin-top: 16px; overflow: hidden; padding-bottom: 8px; }
+      .feat .title { font-size: __H1__; margin-top: 12px; overflow: hidden; padding-bottom: 8px; }
       .feat .title > span { display: inline-block; }
       .feat .sub { font-size: __H2__; color: var(--yellow); margin-top: 4px; }
-      .feat .sub.pre { color: #fff; margin-top: 16px; }
+      .feat .sub.pre { color: #fff; margin-top: 12px; }
       .feat .dots { position: absolute; top: 300px; left: 120px; display: flex; gap: 12px; }
       .feat .dots i { width: 70px; height: 10px; border-radius: 6px; background: rgba(255,255,255,.35); display: block; }
       .feat .dots i.on { background: var(--neon); }
 
       /* HEART RATE widget */
-      #hr .card { position: absolute; left: 120px; width: 660px; top: 790px; background: rgba(0,0,0,.78);
-                  border: 4px solid var(--red); border-radius: 26px; padding: 20px 30px; }
-      #hr .top { display: flex; align-items: center; gap: 22px; }
-      #hr .heart { width: 84px; height: 84px; flex: none; }
-      #hr .bpm { font-family: var(--font-display); color: #fff; font-size: 96px; line-height: 1; }
-      #hr .bpm small { font-family: var(--font-label); font-weight: 800; font-size: 30px; color: #bbb; margin-left: 8px; letter-spacing: .06em; }
-      #hr .zones { display: flex; gap: 8px; margin-top: 16px; }
-      #hr .zones i { flex: 1; height: 44px; border-radius: 10px; font-style: normal; display: flex; align-items: center; justify-content: center;
-                     font-family: var(--font-label); font-weight: 800; font-size: 28px; color: rgba(0,0,0,.75); opacity: .35; }
+      #hr .card { position: absolute; left: 120px; width: 460px; top: 640px; background: rgba(0,0,0,.78);
+                  border: 3px solid var(--red); border-radius: 18px; padding: 14px 20px; }
+      #hr .top { display: flex; align-items: center; gap: 15px; }
+      #hr .heart { width: 56px; height: 56px; flex: none; }
+      #hr .bpm { font-family: var(--font-display); color: #fff; font-size: 64px; line-height: 1; }
+      #hr .bpm small { font-family: var(--font-label); font-weight: 800; font-size: 20px; color: #bbb; margin-left: 6px; letter-spacing: .06em; }
+      #hr .zones { display: flex; gap: 6px; margin-top: 11px; }
+      #hr .zones i { flex: 1; height: 30px; border-radius: 7px; font-style: normal; display: flex; align-items: center; justify-content: center;
+                     font-family: var(--font-label); font-weight: 800; font-size: 19px; color: rgba(0,0,0,.75); opacity: .35; }
       #hr .zones i.z2 { outline: 0 solid #fff; }
 
       /* WARM-UP gauge */
-      #warm .g { position: absolute; left: 860px; top: 780px; width: 70px; height: 330px; border: 6px solid #fff; border-radius: 40px;
+      #warm .g { position: absolute; left: 860px; top: 640px; width: 56px; height: 300px; border: 6px solid #fff; border-radius: 40px;
                  background: rgba(0,0,0,.5); overflow: hidden; box-shadow: 0 0 0 4px #000; }
       #warm .g i { position: absolute; left: 0; right: 0; bottom: 0; height: 100%; display: block; transform-origin: 50% 100%; transform: scaleY(0);
                    background: linear-gradient(0deg, #19d6c6 0%, #ffe100 55%, #ff5a1f 100%); }
-      #warm .bulb { position: absolute; left: 845px; top: 1090px; width: 100px; height: 100px; border-radius: 50%; background: #ff5a1f;
+      #warm .bulb { position: absolute; left: 846px; top: 925px; width: 84px; height: 84px; border-radius: 50%; background: #ff5a1f;
                     border: 6px solid #fff; box-shadow: 0 0 0 4px #000; }
 
       /* PAIN overlay */
@@ -215,25 +215,25 @@ TEMPLATE = r"""<!doctype html>
       #buy .box { position: absolute; top: 330px; left: 120px; right: 120px; text-align: center; }
       #buy .h1 { font-size: __H1__; }
       #buy .h1 .y { color: var(--yellow); }
-      #buy .sub2 { font-size: __H2__; color: var(--yellow); margin-top: 6px; display: inline-flex; align-items: center; gap: 14px; }
-      #buy .sub2 .bagsvg { width: 70px; height: 70px; }
-      #buy .card { position: absolute; left: 120px; width: 660px; top: 760px; background: rgba(0,0,0,.78);
+      #buy .sub2 { font-size: __H2__; color: var(--yellow); margin-top: 4px; display: inline-flex; align-items: center; gap: 10px; }
+      #buy .sub2 .bagsvg { width: 47px; height: 47px; }
+      #buy .card { position: absolute; left: 120px; width: 660px; top: 600px; background: rgba(0,0,0,.78);
                    border: 5px solid var(--neon); border-radius: 28px; padding: 20px 24px 16px; }
       #buy .sw { display: flex; justify-content: center; align-items: flex-start; gap: 14px; }
       #buy .sw .tile { width: 192px; display: flex; flex-direction: column; align-items: center; gap: 6px; transform-origin: 50% 60%; }
       #buy .sw img { width: 192px; height: 240px; object-fit: cover; border-radius: 16px; border: 4px solid #fff; display: block; }
       #buy .sw .nm { font-size: {{40}}; color: #fff; text-align: center; line-height: 1.1; letter-spacing: 0.04em; }
-      #buy .bigbag { position: absolute; left: 130px; top: 1240px; width: 150px; height: 150px; }
+      #buy .bigbag { position: absolute; left: 130px; top: 1000px; width: 150px; height: 150px; }
       #buy .bigbag .bagsvg { width: 150px; height: 150px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.5)); }
-      #buy .arrows { position: absolute; left: 165px; top: 1395px; display: flex; flex-direction: column; align-items: center; }
+      #buy .arrows { position: absolute; left: 165px; top: 1155px; display: flex; flex-direction: column; align-items: center; }
       #buy .arrows i { width: 56px; height: 56px; border-right: 14px solid var(--yellow); border-bottom: 14px solid var(--yellow);
                        transform: rotate(45deg); margin-top: -20px; display: block; filter: drop-shadow(0 0 3px #000); }
 
       /* CAPTIONS: Anton 60px, uppercase, black stroke, centre-bottom */
       .cap .capline { position: absolute; left: 120px; width: 840px; top: 1140px; display: flex; justify-content: center;
-                      flex-wrap: wrap; gap: 0 16px; transform-origin: 50% 50%; }
-      .cap .w { font-family: var(--font-display); font-size: 60px; line-height: 1.1; text-transform: uppercase; color: #fff;
-                -webkit-text-stroke: 10px #000; paint-order: stroke fill; display: inline-block; letter-spacing: 0.02em;
+                      flex-wrap: wrap; gap: 0 11px; transform-origin: 50% 50%; }
+      .cap .w { font-family: var(--font-display); font-size: 40px; line-height: 1.1; text-transform: uppercase; color: #fff;
+                -webkit-text-stroke: 7px #000; paint-order: stroke fill; display: inline-block; letter-spacing: 0.02em;
                 text-shadow: 0 4px 10px rgba(0,0,0,.5); }
       .cap .w.kw { color: var(--neon); }
     </style>
@@ -344,7 +344,7 @@ TEMPLATE = r"""<!doctype html>
         tl.to("#hrh", { scale: 1, duration: 0.2, ease: "power2.in" }, 5.72 + k * 0.6);
       }
       tl.to("#hr .zones i", { opacity: 0.35, duration: 0.01 }, 5.4);
-      tl.to("#hrz2", { opacity: 1, scale: 1.12, outlineWidth: 6, duration: 0.3, ease: "back.out(2.5)" }, 7.3);
+      tl.to("#hrz2", { opacity: 1, scale: 1.12, outlineWidth: 4, duration: 0.3, ease: "back.out(2.5)" }, 7.3);
 
       // WARM-UP gauge
       tl.fromTo("#wfill", { scaleY: 0 }, { scaleY: 1, duration: 4.5, ease: "power1.inOut" }, 13.0);

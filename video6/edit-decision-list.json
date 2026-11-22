@@ -4,8 +4,8 @@
   "voiceover": null,
   "footage_volume": 0.3,
   "sfx_volume": 0.32,
-  "headline_px": 150,
-  "subheadline_px": 70,
+  "headline_px": 100,
+  "subheadline_px": 47,
   "clips": [
     {
       "id": "t01",
@@ -13,7 +13,7 @@
       "start": 0.0,
       "duration": 4.2,
       "volume": 0.3,
-      "source": "video_20260429_114602 5.8-10.0 runner on track, Emerald Green (intro, one shot)"
+      "source": "video_20260429_114602 4.6-8.8 runner on track, Emerald Green (intro, one shot)"
     },
     {
       "id": "t02",
@@ -73,11 +73,11 @@
     },
     {
       "id": "t09",
-      "file": "t09_flex.mp4",
+      "file": "t09_bounce.mp4",
       "start": 31.3,
       "duration": 4.0,
       "volume": 0.3,
-      "source": "lv_0_20251221130556 40.5-44.5 sole flex, Emerald Green"
+      "source": "lv_0_20251221130556 64.8-68.8 shoe pressed and springing back up, Emerald Green"
     },
     {
       "id": "t10",
