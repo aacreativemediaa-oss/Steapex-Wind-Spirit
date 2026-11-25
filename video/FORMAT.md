@@ -73,3 +73,9 @@ Projek rujukan terkini: `video4/` (salin `tools/build.py` sebagai titik mula).
 - **Saiz video ~70 MB:** pilih `--video-bitrate` ikut panjang video (≈14.5M untuk ~40s).
 - Shot plate flexible: guna footage kasut ditekan & **melantun ke atas** (cth. lv_0_20251221130556 64.8–71.8s).
 - Video tanpa VO: caption ikut skrip; blok TIPS #n / KELEBIHAN #n (chip + headline + sub-headline); CTA tunjuk 3 warna.
+
+## Nota teknikal (video8)
+- **Footage HDR (iPhone HLG/BT.2020) mesti ditukar ke SDR BT.709 sebelum digunakan** (`zscale` + `tonemap=hable`).
+  Jika tidak, Hyperframes beralih ke mod komposit HDR yang sangat perlahan (render tersangkut >30 minit).
+- Footage dengan kasut jenama lain di luar bahagian sakit: crop di atas buku lali; jika muka tertutup headline,
+  letak shot (≈88%) di atas latar kabur footage yang sama.
