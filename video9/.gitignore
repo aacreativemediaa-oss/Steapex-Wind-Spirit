@@ -1,0 +1,6 @@
+.hyperframes/
+node_modules/
+renders/*.partial*
+renders/work-*/
+renders/.*-transaction-*/
+renders/*.hf-transaction*
