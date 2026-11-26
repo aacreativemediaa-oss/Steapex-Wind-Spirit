@@ -79,3 +79,10 @@ Projek rujukan terkini: `video4/` (salin `tools/build.py` sebagai titik mula).
   Jika tidak, Hyperframes beralih ke mod komposit HDR yang sangat perlahan (render tersangkut >30 minit).
 - Footage dengan kasut jenama lain di luar bahagian sakit: crop di atas buku lali; jika muka tertutup headline,
   letak shot (≈88%) di atas latar kabur footage yang sama.
+
+## Kemas kini format (untuk video selepas video8)
+1. **Headline dalam satu baris** — jangan pecah baris (`<br>`) melainkan teks memang tak muat dalam lebar zon selamat
+   (x 120–960, ~840px pada 100px Anton ≈ 18–19 aksara). Jika tak muat, barulah pecah kepada 2 baris.
+2. **Video asal jangan close-up** — kekalkan framing asal footage: jangan crop/zoom masuk ke subjek
+   (contoh: crop ke separuh badan, crop ketat pada kasut). Zoom masuk ringkas pada setiap potongan
+   (1.00 → ~1.07) dikekalkan sebagai kesan, bukan crop. Kasut jenama lain → pilih shot lain, bukan crop.
