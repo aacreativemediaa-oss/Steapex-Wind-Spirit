@@ -91,4 +91,4 @@ Projek rujukan terkini: `video4/` (salin `tools/build.py` sebagai titik mula).
 ## Kemas kini format (video9)
 - **Headline 85px** (sebelum ini 100px). Sub-headline kekal 47px, caption 40px, label ~19px.
   Pada 85px, headline ±21–22 aksara muat satu baris (contoh "CARI YANG BELAH KANAN").
-- **Caption diturunkan ke y=1185** (sebelum ini 1140) — paling rendah yang masih dalam zon selamat Reels/Shorts.
+- **Caption pada y=1450** (tengah bawah; diminta lebih rendah daripada 1185 walaupun di bawah garis zon selamat Reels/Shorts).
