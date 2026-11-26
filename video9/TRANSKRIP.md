@@ -3,7 +3,7 @@
 Sumber VO: `New VO.mov` (skrin hitam + voiceover, 35.46s). Transkrip: Whisper `large-v3` (ms), ejaan dibetulkan manual
 (kasus→kasut, banding→badan, mentakan→hentakan, "tak apa ditumik"→"tak pedih tumit").
 VO pada 0.000s, volume 100%, tiada potongan — disahkan lag 0.00 ms pada render akhir. Bunyi footage 30% (ujian asap 8%).
-Format terkini: headline 100px satu baris (pecah hanya jika tak muat, diseimbangkan), sub 47px, caption 40px; footage asal tanpa crop close-up; render 69.8 MB.
+Format terkini: headline 85px satu baris (pecah hanya jika tak muat, diseimbangkan), sub 47px, caption 40px pada y=1185; footage asal tanpa crop close-up; render 69.8 MB.
 CTA ikut VO: "grab sekarang dekat **link bawah ni**" (bukan beg kuning). Tiada B-roll (VO ini tiada bahagian sakit).
 
 ## 1. Transkrip VO

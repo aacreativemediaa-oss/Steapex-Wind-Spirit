@@ -15,7 +15,7 @@ CLIP_ORIGIN = {"n07": "50% 70%"}
 SFX_VOL = 0.30
 VO_FILE = "assets/audio/vo.wav"
 VO_LEN = 35.455
-H1, H2, CAP = 100, 47, 40
+H1, H2, CAP = 85, 47, 40
 S = 0.70 * 2 / 3                       # small labels ({{n}} tokens): ~19px for a 40 token
 
 # ---- Edit decision list (10 clips) ---------------------------------------------------------------
@@ -272,7 +272,7 @@ TEMPLATE = r"""<!doctype html>
                        transform: rotate(45deg); margin-top: -14px; display: block; filter: drop-shadow(0 0 3px #000); }
 
       /* CAPTIONS: Anton __CAP__, uppercase, black stroke, centre-bottom */
-      .cap .capline { position: absolute; left: 120px; width: 840px; top: 1140px; display: flex; justify-content: center;
+      .cap .capline { position: absolute; left: 120px; width: 840px; top: 1185px; display: flex; justify-content: center;
                       flex-wrap: wrap; gap: 0 11px; transform-origin: 50% 50%; }
       .cap .w { font-family: var(--font-display); font-size: __CAP__; line-height: 1.1; text-transform: uppercase; color: #fff;
                 -webkit-text-stroke: 7px #000; paint-order: stroke fill; display: inline-block; letter-spacing: 0.02em;

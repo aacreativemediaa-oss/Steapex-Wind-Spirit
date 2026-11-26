@@ -87,3 +87,8 @@ Projek rujukan terkini: `video4/` (salin `tools/build.py` sebagai titik mula).
 2. **Video asal jangan close-up** — kekalkan framing asal footage: jangan crop/zoom masuk ke subjek
    (contoh: crop ke separuh badan, crop ketat pada kasut). Zoom masuk ringkas pada setiap potongan
    (1.00 → ~1.07) dikekalkan sebagai kesan, bukan crop. Kasut jenama lain → pilih shot lain, bukan crop.
+
+## Kemas kini format (video9)
+- **Headline 85px** (sebelum ini 100px). Sub-headline kekal 47px, caption 40px, label ~19px.
+  Pada 85px, headline ±21–22 aksara muat satu baris (contoh "CARI YANG BELAH KANAN").
+- **Caption diturunkan ke y=1185** (sebelum ini 1140) — paling rendah yang masih dalam zon selamat Reels/Shorts.
